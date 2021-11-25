@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "505301975742",
+    "project_id": "company-9cc68",
+    "storage_bucket": "company-9cc68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505301975742:android:ec7197377e3d3327c454ef",
+        "android_client_info": {
+          "package_name": "com.example.companyChat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505301975742-qqrq4rrgh230h0pok2mg87euu2434u96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXHNuD5FCoyOZ3Ihx4MqWr4qAo7hOlvMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505301975742-qqrq4rrgh230h0pok2mg87euu2434u96.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "505301975742-m5fnohgk627l3uc8erm331vb0ncnma65.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.companyChat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
