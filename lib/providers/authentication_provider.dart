@@ -22,7 +22,6 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
-
     _auth.authStateChanges().listen((_user) {
       if (_user != null) {
         _databaseService.updateUserLastSeenTime(_user.uid);
@@ -55,6 +54,27 @@ class AuthenticationProvider extends ChangeNotifier {
           email: _email, password: _password);
     } on FirebaseAuthException {
       print("Error loggin user into Firebase");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<String?> registerUserUsingEmailAndPassword(
+      String _email, String _password) async {
+    try {
+      UserCredential _credentials = await _auth.createUserWithEmailAndPassword(
+          email: _email, password: _password);
+      return _credentials.user!.uid;
+    } on FirebaseAuthException {
+      print("Error registering user.");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
     } catch (e) {
       print(e);
     }
