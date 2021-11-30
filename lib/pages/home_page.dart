@@ -1,6 +1,11 @@
 //Packages
 import 'package:flutter/material.dart';
 
+//Pages
+import '../pages/chats_page.dart';
+import '../pages/users_page.dart';
+import '../pages/qr_page.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -9,12 +14,49 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentPage = 0;
+  final List<Widget> _pages = [
+    ChatsPage(),
+    UsersPage(),
+    QrPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return _buildUI();
   }
 
   Widget _buildUI() {
-    return Scaffold();
+    return Scaffold(
+      body: _pages[_currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPage,
+        onTap: (_index) {
+          setState(() {
+            _currentPage = _index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: "Chats",
+            icon: Icon(
+              Icons.chat_bubble_sharp,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Users",
+            icon: Icon(
+              Icons.supervisor_account_sharp,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "QR Code",
+            icon: Icon(
+              Icons.qr_code_sharp,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
