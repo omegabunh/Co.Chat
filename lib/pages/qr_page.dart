@@ -11,6 +11,9 @@ import 'package:date_format/date_format.dart';
 //Providers
 import '../providers/authentication_provider.dart';
 
+//Widgets
+import '../widgets/top_bar.dart';
+
 class QrPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -19,14 +22,22 @@ class QrPage extends StatefulWidget {
 }
 
 class _QrPageState extends State<QrPage> {
+  late double _devieHeight;
+  late double _deviceWidth;
+  late String name;
+
+  late AuthenticationProvider _auth;
+
   //qr code time
   String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
 
   Widget build(BuildContext context) {
+    _auth = Provider.of<AuthenticationProvider>(context);
     return _buildUI();
   }
 
   Widget _buildUI() {
+    name = _auth.user.name;
     return Scaffold(
       //backgroundColor: Colors.blue,
       body: Center(
@@ -40,7 +51,7 @@ class _QrPageState extends State<QrPage> {
                 children: [
                   QrImage(
                     //data: "박성우 $now",
-                    data: "test",
+                    data: "$name",
                     version: QrVersions.auto,
                     size: 200,
                     backgroundColor: Colors.white,
