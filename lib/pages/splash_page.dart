@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
 //Services
-import '../services/navigation_services.dart';
+import '../services/navigation_service.dart';
 import '../services/media_service.dart';
 import '../services/cloud_storage_service.dart';
 import '../services/database_service.dart';

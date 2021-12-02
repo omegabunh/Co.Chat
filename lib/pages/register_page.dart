@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../services/media_service.dart';
 import '../services/database_service.dart';
 import '../services/cloud_storage_service.dart';
-import '../services/navigation_services.dart';
+import '../services/navigation_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
@@ -37,8 +37,9 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _email;
   String? _password;
   String? _name;
-
   PlatformFile? _profileImage;
+  String? _companyCode;
+  String companyCode = '123456';
 
   final _registerFormKey = GlobalKey<FormState>();
 
@@ -57,38 +58,39 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: _deviceWidth * 0.03,
-            vertical: _deviceHeight * 0.02,
-          ),
-          height: _deviceHeight * 0.98,
-          width: _deviceWidth * 0.97,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _profileImageField(),
-              SizedBox(
-                height: _deviceHeight * 0.05,
-              ),
-              _registerForm(),
-              SizedBox(
-                height: _deviceHeight * 0.05,
-              ),
-              _registerButton(),
-              SizedBox(
-                height: _deviceHeight * 0.02,
-              ),
-            ],
-          )),
+        padding: EdgeInsets.symmetric(
+          horizontal: _deviceWidth * 0.03,
+          vertical: _deviceHeight * 0.02,
+        ),
+        height: _deviceHeight * 0.98,
+        width: _deviceWidth * 0.97,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _profileImageField(),
+            SizedBox(
+              height: _deviceHeight * 0.05,
+            ),
+            _registerForm(),
+            SizedBox(
+              height: _deviceHeight * 0.05,
+            ),
+            _registerButton(),
+            SizedBox(
+              height: _deviceHeight * 0.02,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   Widget _profileImageField() {
     return GestureDetector(
       onTap: () {
-        GetIt.instance.get<MediaService>().pickImpageFromLbrary().then(
+        GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
           (_file) {
             setState(
               () {
@@ -108,8 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
         } else {
           return RoundedImageNetwork(
             key: UniqueKey(),
-            imagePath:
-                "https://w.namu.la/s/071e5e5c31b9a95c91162f6f9024d7c507776d48c05e7e52b4669e6571888a3f70690efc9ecf20da9d955eec2f77684d0ecb58908a8515f82dfcda9226ea85886bc6cb46dd3711f7495a99cd0074a26cfeb0c779c9432bfe0fbb923e7c2d44defb081104ed8c017c15144b5f8871752c",
+            imagePath: "https://i.pravatar.cc",
             size: _deviceHeight * 0.15,
           );
         }
@@ -143,7 +144,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   });
                 },
                 regEx:
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`₩{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                 hintText: "Email",
                 obscureText: false),
             CustomTextFormField(
@@ -152,9 +153,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     _password = _value;
                   });
                 },
-                regEx: r'.{8,}',
+                regEx: r".{8,}",
                 hintText: "Password",
                 obscureText: true),
+            CustomTextFormField(
+                onSaved: (_value) {
+                  setState(() {
+                    _companyCode = _value;
+                  });
+                },
+                regEx: r".{6,}",
+                hintText: "CompanyCode",
+                obscureText: false),
           ],
         ),
       ),
@@ -170,13 +180,15 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_registerFormKey.currentState!.validate() &&
             _profileImage != null) {
           _registerFormKey.currentState!.save();
-          String? _uid = await _auth.registerUserUsingEmailAndPassword(
-              _email!, _password!);
-          String? _imageURL =
-              await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
-          await _db.createUser(_uid, _email!, _name!, _imageURL!);
-          await _auth.logout();
-          await _auth.loginUsingEmailAndPassword(_email!, _password!);
+          if (_companyCode == companyCode) {
+            String? _uid = await _auth.registerUserUsingEmailAndPassword(
+                _email!, _password!);
+            String? _imageURL = await _cloudStorage.saveUserImageToStorage(
+                _uid!, _profileImage!);
+            await _db.createUser(_uid, _email!, _name!, _imageURL!);
+            await _auth.logout();
+            await _auth.loginUsingEmailAndPassword(_email!, _password!);
+          }
         }
       },
     );

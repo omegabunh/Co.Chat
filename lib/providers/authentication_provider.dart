@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 
 //Services
 import '../services/database_service.dart';
-import '../services/navigation_services.dart';
+import '../services/navigation_service.dart';
 
 //Models
 import '../models/chat_user.dart';
