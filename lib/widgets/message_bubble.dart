@@ -24,11 +24,11 @@ class TextMessageBubble extends StatelessWidget {
     List<Color> _colorScheme = isOwnMessage
         ? [
             Color.fromRGBO(204, 255, 204, 1.0),
-            Color.fromRGBO(153, 255, 153, 1.0),
+            Color.fromRGBO(204, 255, 204, 1.0),
           ]
         : [
-            Color.fromRGBO(051, 255, 051, 1.0),
-            Color.fromRGBO(051, 255, 051, 1.0),
+            Color.fromRGBO(153, 255, 153, 1.0),
+            Color.fromRGBO(153, 255, 153, 1.0),
           ];
     return Container(
       height: height + (message.content.length / 20 * 6.0),
