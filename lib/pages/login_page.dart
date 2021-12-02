@@ -11,7 +11,7 @@ import '../widgets/rounded_button.dart';
 import '../providers/authentication_provider.dart';
 
 //Services
-import '../services/navigation_services.dart';
+import '../services/navigation_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override

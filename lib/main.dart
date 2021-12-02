@@ -6,7 +6,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:provider/provider.dart';
 
 //Services
-import './services/navigation_services.dart';
+import 'services/navigation_service.dart';
 
 //Providers
 import './providers/authentication_provider.dart';
