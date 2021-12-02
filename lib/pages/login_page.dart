@@ -5,6 +5,8 @@ import 'package:get_it/get_it.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_input_fields_email.dart';
+import '../widgets/custom_input_fields_password.dart';
 import '../widgets/rounded_button.dart';
 
 //Providers
@@ -98,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomTextFormField(
+            CustomTextFormFieldEmail(
                 onSaved: (_value) {
                   setState(() {
                     _email = _value;
@@ -108,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`₩{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                 hintText: 'Email',
                 obscureText: false),
-            CustomTextFormField(
+            CustomTextFormFieldPassword(
                 onSaved: (_value) {
                   setState(() {
                     _password = _value;
