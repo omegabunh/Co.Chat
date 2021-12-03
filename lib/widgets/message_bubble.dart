@@ -66,3 +66,69 @@ class TextMessageBubble extends StatelessWidget {
     );
   }
 }
+
+class ImageMessageBubble extends StatelessWidget {
+  final bool isOwnMessage;
+  final ChatMessage message;
+  final double height;
+  final double width;
+
+  ImageMessageBubble(
+      {required this.isOwnMessage,
+      required this.message,
+      required this.height,
+      required this.width});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Color> _colorScheme = isOwnMessage
+        ? [
+            Color.fromRGBO(204, 255, 204, 1.0),
+            Color.fromRGBO(204, 255, 204, 1.0),
+          ]
+        : [
+            Color.fromRGBO(153, 255, 153, 1.0),
+            Color.fromRGBO(153, 255, 153, 1.0),
+          ];
+    DecorationImage _image = DecorationImage(
+        image: NetworkImage(message.content), fit: BoxFit.cover);
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: width * 0.02,
+        vertical: height * 0.03,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        gradient: LinearGradient(
+          colors: _colorScheme,
+          stops: [0.30, 0.70],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: height,
+            width: width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: _image,
+            ),
+          ),
+          SizedBox(height: height * 0.02),
+          Text(
+            timeago.format(message.sentTime, locale: 'ko'),
+            style: TextStyle(
+              fontSize: 10,
+              color: Colors.black45,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
