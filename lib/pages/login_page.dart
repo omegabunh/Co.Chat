@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildUI() {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         padding: EdgeInsets.symmetric(
           horizontal: _deviceWidth * 0.03,

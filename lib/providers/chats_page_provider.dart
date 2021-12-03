@@ -29,6 +29,7 @@ class ChatsPageProvider extends ChangeNotifier {
     _db = GetIt.instance.get<DatabaseService>();
     getChats();
   }
+
   @override
   void dispose() {
     _chatsStream.cancel();
@@ -51,7 +52,9 @@ class ChatsPageProvider extends ChangeNotifier {
                 Map<String, dynamic> _userData =
                     _userSnapshot.data() as Map<String, dynamic>;
                 _userData["uid"] = _userSnapshot.id;
-                _members.add(ChatUser.fromJSON(_userData));
+                _members.add(
+                  ChatUser.fromJSON(_userData),
+                );
               }
               //Get Last Message For Chat
               List<ChatMessage> _messages = [];
@@ -78,7 +81,7 @@ class ChatsPageProvider extends ChangeNotifier {
         notifyListeners();
       });
     } catch (e) {
-      print("Error getting chats");
+      print("Error getting chats.");
       print(e);
     }
   }

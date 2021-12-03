@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_analytics/observer.dart';
 
 enum MessageType {
   TEXT,
@@ -38,6 +37,7 @@ class ChatMessage {
       sentTime: _json["sent_time"].toDate(),
     );
   }
+
   Map<String, dynamic> toJson() {
     String _messageType;
     switch (type) {
@@ -53,7 +53,7 @@ class ChatMessage {
     return {
       "content": content,
       "type": _messageType,
-      "senderr_id": senderID,
+      "sender_id": senderID,
       "sent_time": Timestamp.fromDate(sentTime),
     };
   }

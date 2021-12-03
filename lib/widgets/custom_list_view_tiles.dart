@@ -89,31 +89,37 @@ class CustomChatListViewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(bottom: 10),
-        width: width,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment:
-              isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            !isOwnMessage
-                ? RoundedImageNetwork(
-                    key: UniqueKey(),
-                    imagePath: sender.imageURL,
-                    size: width * 0.04)
-                : Container(),
-            SizedBox(
-              width: width * 0.05,
-            ),
-            message.type == MessageType.TEXT
-                ? TextMessageBubble(
-                    isOwnMessage: isOwnMessage,
-                    message: message,
-                    height: deviceHeight * 0.06,
-                    width: width)
-                : Text(message.content),
-          ],
-        ));
+      padding: EdgeInsets.only(bottom: 10),
+      width: width,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment:
+            isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          !isOwnMessage
+              ? RoundedImageNetwork(
+                  key: UniqueKey(),
+                  imagePath: sender.imageURL,
+                  size: width * 0.08)
+              : Container(),
+          SizedBox(
+            width: width * 0.05,
+          ),
+          message.type == MessageType.TEXT
+              ? TextMessageBubble(
+                  isOwnMessage: isOwnMessage,
+                  message: message,
+                  height: deviceHeight * 0.06,
+                  width: width)
+              : ImageMessageBubble(
+                  isOwnMessage: isOwnMessage,
+                  message: message,
+                  height: deviceHeight * 0.30,
+                  width: width * 0.55,
+                ),
+        ],
+      ),
+    );
   }
 }
