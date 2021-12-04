@@ -24,7 +24,7 @@ class QrPage extends StatefulWidget {
 class _QrPageState extends State<QrPage> {
   late double _devieHeight;
   late double _deviceWidth;
-  late String name;
+  late String uid;
 
   late AuthenticationProvider _auth;
 
@@ -37,7 +37,7 @@ class _QrPageState extends State<QrPage> {
   }
 
   Widget _buildUI() {
-    name = _auth.user.name;
+    uid = _auth.user.uid;
     return Scaffold(
       //backgroundColor: Colors.blue,
       body: Center(
@@ -51,7 +51,7 @@ class _QrPageState extends State<QrPage> {
                 children: [
                   QrImage(
                     //data: "박성우 $now",
-                    data: "$name",
+                    data: "$uid",
                     version: QrVersions.auto,
                     size: 200,
                     backgroundColor: Colors.white,
