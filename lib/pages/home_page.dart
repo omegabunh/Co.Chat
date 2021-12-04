@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 //Pages
-import '../pages/chats_page.dart';
 import '../pages/users_page.dart';
+import '../pages/chats_page.dart';
 import '../pages/qr_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
   final List<Widget> _pages = [
-    ChatsPage(),
     UsersPage(),
+    ChatsPage(),
     QrPage(),
   ];
 
@@ -38,15 +38,15 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            label: "Chats",
-            icon: Icon(
-              Icons.chat_bubble_sharp,
-            ),
-          ),
-          BottomNavigationBarItem(
             label: "Users",
             icon: Icon(
               Icons.supervisor_account_sharp,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Chats",
+            icon: Icon(
+              Icons.chat_bubble_sharp,
             ),
           ),
           BottomNavigationBarItem(
