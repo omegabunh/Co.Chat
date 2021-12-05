@@ -42,6 +42,7 @@ class MainApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Co.Chat',
+        darkTheme: ThemeData.dark(),
         theme: ThemeData(
           backgroundColor: Color.fromRGBO(155, 217, 191, 1.0),
           scaffoldBackgroundColor: Color.fromRGBO(155, 217, 191, 1.0),
@@ -49,7 +50,6 @@ class MainApp extends StatelessWidget {
             backgroundColor: Color.fromRGBO(79, 109, 98, 1.0),
           ),
         ),
-        darkTheme: ThemeData.dark(),
         navigatorKey: NavigationService.navigatorKey,
         initialRoute: '/login',
         routes: {
