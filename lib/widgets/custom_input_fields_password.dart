@@ -20,7 +20,7 @@ class CustomTextFormFieldPassword extends StatelessWidget {
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) {
-        return RegExp(regEx).hasMatch(_value!) ? null : '비밀번호 항목을 입력해주십시요.';
+        return RegExp(regEx).hasMatch(_value!) ? null : '비밀번호 8자리 이상 입력해주십시요.';
       },
       decoration: InputDecoration(
         fillColor: Color.fromRGBO(64, 127, 104, 1.0),

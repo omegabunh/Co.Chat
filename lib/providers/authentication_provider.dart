@@ -1,8 +1,8 @@
 //Packages
-import 'package:chatify_app/models/chat_user.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 //Services
 import '../services/database_service.dart';
@@ -10,6 +10,7 @@ import '../services/navigation_service.dart';
 
 //Models
 import '../models/chat_user.dart';
+import '../models/chat.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   late final FirebaseAuth _auth;
@@ -53,7 +54,15 @@ class AuthenticationProvider extends ChangeNotifier {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
     } on FirebaseAuthException {
-      print("Error loggin user into Firebase");
+      Fluttertoast.showToast(
+        msg: "아이디 또는 비밀번호가 잘못 입력 되었습니다.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 10,
+      );
     } catch (e) {
       print(e);
     }
@@ -66,7 +75,15 @@ class AuthenticationProvider extends ChangeNotifier {
           email: _email, password: _password);
       return _credentials.user!.uid;
     } on FirebaseAuthException {
-      print("Error registering user.");
+      Fluttertoast.showToast(
+        msg: "이미 존재하는 이메일입니다.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 10,
+      );
     } catch (e) {
       print(e);
     }

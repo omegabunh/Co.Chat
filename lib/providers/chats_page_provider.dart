@@ -81,7 +81,7 @@ class ChatsPageProvider extends ChangeNotifier {
         notifyListeners();
       });
     } catch (e) {
-      print("Error getting chats.");
+      print("채팅을 가져오는데 문제가 발생하였습니다.");
       print(e);
     }
   }

@@ -59,6 +59,33 @@ class RoundedImageFile extends StatelessWidget {
   }
 }
 
+class RoundedInImageFile extends StatelessWidget {
+  final double size;
+
+  RoundedInImageFile({
+    required Key key,
+    required this.size,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/images/user.png'),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(size),
+        ),
+        color: Colors.black,
+      ),
+    );
+  }
+}
+
 class RoundedImageNetworkWithStatusIndicator extends RoundedImageNetwork {
   final bool isActive;
 

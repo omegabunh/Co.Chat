@@ -12,6 +12,8 @@ import '../services/navigation_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_input_fields_email.dart';
+import '../widgets/custom_input_fields_password.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
 
@@ -75,11 +77,11 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             _registerForm(),
             SizedBox(
-              height: _deviceHeight * 0.05,
+              height: _deviceHeight * 0.1,
             ),
             _registerButton(),
             SizedBox(
-              height: _deviceHeight * 0.02,
+              height: _deviceHeight * 0.01,
             ),
           ],
         ),
@@ -108,9 +110,8 @@ class _RegisterPageState extends State<RegisterPage> {
             size: _deviceHeight * 0.15,
           );
         } else {
-          return RoundedImageNetwork(
+          return RoundedInImageFile(
             key: UniqueKey(),
-            imagePath: "https://i.pravatar.cc",
             size: _deviceHeight * 0.15,
           );
         }
@@ -137,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 regEx: r'^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣0-9]{2,6}$',
                 hintText: "Name",
                 obscureText: false),
-            CustomTextFormField(
+            CustomTextFormFieldEmail(
                 onSaved: (_value) {
                   setState(() {
                     _email = _value;
@@ -147,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
                 hintText: "Email",
                 obscureText: false),
-            CustomTextFormField(
+            CustomTextFormFieldPassword(
                 onSaved: (_value) {
                   setState(() {
                     _password = _value;

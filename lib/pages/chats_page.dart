@@ -69,7 +69,7 @@ class _ChatsPageState extends State<ChatsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TopBar(
-              'CompanyChat',
+              'Co.Chat',
               primaryAction: IconButton(
                 icon: Icon(
                   Icons.logout,
@@ -124,7 +124,7 @@ class _ChatsPageState extends State<ChatsPage> {
     String _subtitleText = "";
     if (_chat.messages.isNotEmpty) {
       _subtitleText = _chat.messages.first.type != MessageType.TEXT
-          ? "Media Attachment"
+          ? "사진"
           : _chat.messages.first.content;
     }
     return CustomListViewTileWithActivity(

@@ -1,5 +1,4 @@
 //Packages
-import 'package:chatify_app/providers/chat_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +14,7 @@ import '../models/chat_message.dart';
 //Porviders
 import '../providers/authentication_provider.dart';
 import '../providers/chats_page_provider.dart';
+import '../providers/chat_page_provider.dart';
 
 class ChatPage extends StatefulWidget {
   final Chat chat;
