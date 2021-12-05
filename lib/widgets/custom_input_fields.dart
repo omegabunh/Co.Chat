@@ -20,7 +20,7 @@ class CustomTextFormField extends StatelessWidget {
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) {
-        return RegExp(regEx).hasMatch(_value!) ? null : 'Enter a valid value.';
+        return RegExp(regEx).hasMatch(_value!) ? null : '알맞은 값을 입력해주십시요.';
       },
       decoration: InputDecoration(
         fillColor: Color.fromRGBO(64, 127, 104, 1.0),

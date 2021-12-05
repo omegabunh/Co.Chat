@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       height: _deviceHeight * 0.10,
       child: Text(
-        'CompanyChat',
+        'Co.Chat',
         style: TextStyle(
           color: Colors.white,
           fontSize: 40,

@@ -40,7 +40,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CompanyChat',
+      title: 'Co.Chat',
       theme: ThemeData(
         backgroundColor: Color.fromRGBO(155, 217, 191, 1.0),
         scaffoldBackgroundColor: Color.fromRGBO(155, 217, 191, 1.0),
