@@ -112,7 +112,7 @@ class _QrPageState extends State<QrPage> {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("assets/images/user.png"),
+          image: NetworkImage(profileImage),
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(100),
