@@ -162,7 +162,7 @@ class _ChatPageState extends State<ChatPage> {
       height: _deviceHeight * 0.06,
       decoration: BoxDecoration(
         color: Color.fromRGBO(64, 127, 104, 1.0),
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(10),
       ),
       margin: EdgeInsets.symmetric(
         horizontal: _deviceWidth * 0.04,
@@ -218,7 +218,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _imageMessageButton() {
-    double _size = _deviceHeight * 0.04;
+    double _size = _deviceHeight * 0.033;
     return Container(
       height: _size,
       width: _size,
