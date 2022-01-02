@@ -23,6 +23,10 @@ class CustomTextFormFieldPassword extends StatelessWidget {
         return RegExp(regEx).hasMatch(_value!) ? null : '비밀번호 8자리 이상 입력해주십시요.';
       },
       decoration: InputDecoration(
+        prefixIcon: Icon(
+          Icons.lock_outline,
+          color: Colors.white54,
+        ),
         fillColor: Color.fromRGBO(64, 127, 104, 1.0),
         filled: true,
         border: OutlineInputBorder(

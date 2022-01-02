@@ -165,7 +165,7 @@ class _ChatPageState extends State<ChatPage> {
         borderRadius: BorderRadius.circular(100),
       ),
       margin: EdgeInsets.symmetric(
-        horizontal: _deviceWidth * 0.03,
+        horizontal: _deviceWidth * 0.04,
         vertical: _deviceHeight * 0.03,
       ),
       child: Form(
@@ -185,7 +185,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget _messageTextField() {
     return SizedBox(
-      width: _deviceWidth * 0.675,
+      width: _deviceWidth * 0.65,
       child: CustomTextFormField(
           onSaved: (_value) {
             _pageProvider.message = _value;
@@ -197,7 +197,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _sendMessageButton() {
-    double _size = _deviceHeight * 0.04;
+    double _size = _deviceHeight * 0.05;
     return Container(
       height: _size,
       width: _size,

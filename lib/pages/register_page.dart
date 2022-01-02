@@ -12,6 +12,7 @@ import '../services/navigation_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_input_fields_name.dart';
 import '../widgets/custom_input_fields_email.dart';
 import '../widgets/custom_input_fields_password.dart';
 import '../widgets/rounded_button.dart';
@@ -129,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomTextFormField(
+            CustomTextFormFieldName(
                 onSaved: (_value) {
                   setState(() {
                     _name = _value;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormFieldEmail extends StatelessWidget {
+class CustomTextFormFieldName extends StatelessWidget {
   final Function(String) onSaved;
   final String regEx;
   final String hintText;
   final bool obscureText;
 
-  CustomTextFormFieldEmail(
+  CustomTextFormFieldName(
       {required this.onSaved,
       required this.regEx,
       required this.hintText,
@@ -20,11 +20,11 @@ class CustomTextFormFieldEmail extends StatelessWidget {
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) {
-        return RegExp(regEx).hasMatch(_value!) ? null : '이메일 항목을 입력해주십시요.';
+        return RegExp(regEx).hasMatch(_value!) ? null : '2~6자 이내의 이름을 입력해주십시요.';
       },
       decoration: InputDecoration(
         prefixIcon: Icon(
-          Icons.email_outlined,
+          Icons.account_circle,
           color: Colors.white54,
         ),
         fillColor: Color.fromRGBO(64, 127, 104, 1.0),
