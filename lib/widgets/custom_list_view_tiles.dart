@@ -1,6 +1,7 @@
 //Packages
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 //Widgets
 import '../widgets/rounded_image.dart';
@@ -31,6 +32,7 @@ class CustomListViewTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeago.setLocaleMessages('ko', timeago.KoMessages());
     return ListTile(
       trailing: isSelected ? Icon(Icons.check, color: Colors.white) : null,
       onTap: () => onTap(),
@@ -152,10 +154,10 @@ class CustomChatListViewTile extends StatelessWidget {
               ? RoundedImageNetwork(
                   key: UniqueKey(),
                   imagePath: sender.imageURL,
-                  size: width * 0.08)
+                  size: width * 0.1)
               : Container(),
           SizedBox(
-            width: width * 0.05,
+            width: width * 0.01,
           ),
           message.type == MessageType.TEXT
               ? TextMessageBubble(

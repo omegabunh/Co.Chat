@@ -59,7 +59,7 @@ class CustomTextField extends StatelessWidget {
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       decoration: InputDecoration(
-        fillColor: Color.fromRGBO(30, 29, 37, .10),
+        fillColor: Color.fromRGBO(30, 29, 37, 0.1),
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),

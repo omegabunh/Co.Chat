@@ -117,6 +117,7 @@ class _ChatPageState extends State<ChatPage> {
         return Container(
           height: _deviceHeight * 0.74,
           child: ListView.builder(
+            shrinkWrap: true,
             controller: _messagesListViewController,
             itemCount: _pageProvider.messages!.length,
             itemBuilder: (BuildContext _context, int _index) {
@@ -162,7 +163,7 @@ class _ChatPageState extends State<ChatPage> {
       height: _deviceHeight * 0.06,
       decoration: BoxDecoration(
         color: Color.fromRGBO(64, 127, 104, 1.0),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(100),
       ),
       margin: EdgeInsets.symmetric(
         horizontal: _deviceWidth * 0.04,
@@ -172,12 +173,12 @@ class _ChatPageState extends State<ChatPage> {
         key: _messageFormState,
         child: Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              _imageMessageButton(),
               _messageTextField(),
               _sendMessageButton(),
-              _imageMessageButton(),
             ]),
       ),
     );
@@ -197,13 +198,15 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _sendMessageButton() {
-    double _size = _deviceHeight * 0.05;
+    double _size = _deviceHeight * 0.04;
     return Container(
       height: _size,
       width: _size,
-      child: IconButton(
-        icon: Icon(
-          Icons.send,
+      child: FloatingActionButton(
+        heroTag: "sendMessage",
+        backgroundColor: Color.fromRGBO(64, 200, 104, 1.0),
+        child: Icon(
+          Icons.arrow_upward,
           color: Colors.white,
         ),
         onPressed: () {
@@ -218,11 +221,12 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _imageMessageButton() {
-    double _size = _deviceHeight * 0.033;
+    double _size = _deviceHeight * 0.04;
     return Container(
       height: _size,
       width: _size,
       child: FloatingActionButton(
+        heroTag: "sendImage",
         backgroundColor: Color.fromRGBO(64, 200, 104, 1.0),
         onPressed: () {
           _pageProvider.sendImageMessage();

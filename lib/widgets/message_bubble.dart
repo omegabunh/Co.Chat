@@ -24,34 +24,43 @@ class TextMessageBubble extends StatelessWidget {
     return Container(
       height: height + (message.content.length / 20 * 6.0),
       width: width,
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
       child: Align(
         alignment: isOwnMessage ? Alignment.centerRight : Alignment.centerLeft,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(15),
             color: isOwnMessage
                 ? Color.fromRGBO(204, 255, 204, 1.0)
                 : Color.fromRGBO(153, 255, 153, 1.0),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Text(
-                message.content,
-                style: TextStyle(
-                  color: Colors.black,
+              Padding(
+                padding:
+                    EdgeInsets.only(left: 15, right: 15.0, top: 10, bottom: 10),
+                child: Text(
+                  message.content,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              Text(
-                timeago.format(message.sentTime, locale: 'ko'),
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.black45,
+              Positioned(
+                bottom: 0.0,
+                right: 5.0,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      timeago.format(message.sentTime, locale: 'ko'),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.black45,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),
