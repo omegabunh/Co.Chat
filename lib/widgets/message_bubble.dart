@@ -50,7 +50,7 @@ class TextMessageBubble extends StatelessWidget {
                 bottom: 0.0,
                 right: 5.0,
                 child: Row(
-                  children: <Widget>[
+                  children: [
                     Text(
                       timeago.format(message.sentTime, locale: 'ko'),
                       style: TextStyle(
@@ -92,22 +92,53 @@ class ImageMessageBubble extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: isOwnMessage
-            ? Color.fromRGBO(204, 255, 204, 1.0)
-            : Color.fromRGBO(153, 255, 153, 1.0),
+        // color: isOwnMessage
+        //     ? Color.fromRGBO(204, 255, 204, 1.0)
+        //     : Color.fromRGBO(153, 255, 153, 1.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: _image,
+          GestureDetector(
+            child: Container(
+              height: height,
+              width: width,
+              child: Hero(
+                tag: '$_image',
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(0),
+                    image: _image,
+                  ),
+                ),
+              ),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Scaffold(
+                      body: GestureDetector(
+                        child: Center(
+                          child: Hero(
+                            tag: '$_image',
+                            child: Image.network(
+                              message.content,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
           ),
           SizedBox(height: height * 0.02),
           Text(
