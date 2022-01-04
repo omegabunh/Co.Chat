@@ -188,12 +188,14 @@ class _ChatPageState extends State<ChatPage> {
     return SizedBox(
       width: _deviceWidth * 0.65,
       child: CustomTextFormField(
-          onSaved: (_value) {
-            _pageProvider.message = _value;
-          },
-          regEx: r"^(?!\s*$).+",
-          hintText: "",
-          obscureText: false),
+        onSaved: (_value) {
+          _pageProvider.message = _value;
+        },
+        regEx: r"^(?!\s*$).+",
+        hintText: "",
+        obscureText: false,
+        message: '',
+      ),
     );
   }
 

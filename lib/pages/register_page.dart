@@ -12,9 +12,6 @@ import '../services/navigation_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
-import '../widgets/custom_input_fields_name.dart';
-import '../widgets/custom_input_fields_email.dart';
-import '../widgets/custom_input_fields_password.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
 
@@ -130,43 +127,51 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomTextFormFieldName(
-                onSaved: (_value) {
-                  setState(() {
-                    _name = _value;
-                  });
-                },
-                regEx: r'^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣0-9]{2,6}$',
-                hintText: "Name",
-                obscureText: false),
-            CustomTextFormFieldEmail(
-                onSaved: (_value) {
-                  setState(() {
-                    _email = _value;
-                  });
-                },
-                regEx:
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                hintText: "Email",
-                obscureText: false),
-            CustomTextFormFieldPassword(
-                onSaved: (_value) {
-                  setState(() {
-                    _password = _value;
-                  });
-                },
-                regEx: r".{8,}",
-                hintText: "Password",
-                obscureText: true),
             CustomTextFormField(
-                onSaved: (_value) {
-                  setState(() {
-                    _companyCode = _value;
-                  });
-                },
-                regEx: r".{6,}",
-                hintText: "CompanyCode",
-                obscureText: false),
+              onSaved: (_value) {
+                setState(() {
+                  _name = _value;
+                });
+              },
+              regEx: r'^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣0-9]{2,6}$',
+              hintText: "Name",
+              obscureText: false,
+              message: '2~6자 이내의 이름을 입력해주십시요.',
+            ),
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _email = _value;
+                });
+              },
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: "Email",
+              obscureText: false,
+              message: '이메일 항목을 입력해주십시요.',
+            ),
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _password = _value;
+                });
+              },
+              regEx: r".{8,}",
+              hintText: "Password",
+              obscureText: true,
+              message: '비밀번호 8자리 이상 입력해주십시요.',
+            ),
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _companyCode = _value;
+                });
+              },
+              regEx: r".{6,}",
+              hintText: "CompanyCode",
+              obscureText: false,
+              message: '6자리의 회사코드를 입력해주십시요.',
+            ),
           ],
         ),
       ),

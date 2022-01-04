@@ -5,12 +5,14 @@ class CustomTextFormField extends StatelessWidget {
   final String regEx;
   final String hintText;
   final bool obscureText;
+  final String message;
 
   CustomTextFormField(
       {required this.onSaved,
       required this.regEx,
       required this.hintText,
-      required this.obscureText});
+      required this.obscureText,
+      required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class CustomTextFormField extends StatelessWidget {
       style: TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) {
-        return RegExp(regEx).hasMatch(_value!) ? null : '알맞은 값을 입력해주십시요.';
+        return RegExp(regEx).hasMatch(_value!) ? null : message;
       },
       decoration: InputDecoration(
         fillColor: Color.fromRGBO(64, 127, 104, 1.0),

@@ -5,8 +5,6 @@ import 'package:get_it/get_it.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
-import '../widgets/custom_input_fields_email.dart';
-import '../widgets/custom_input_fields_password.dart';
 import '../widgets/rounded_button.dart';
 
 //Providers
@@ -101,25 +99,29 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomTextFormFieldEmail(
-                onSaved: (_value) {
-                  setState(() {
-                    _email = _value;
-                  });
-                },
-                regEx:
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`₩{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                hintText: 'Email',
-                obscureText: false),
-            CustomTextFormFieldPassword(
-                onSaved: (_value) {
-                  setState(() {
-                    _password = _value;
-                  });
-                },
-                regEx: r".{8,}",
-                hintText: 'Password',
-                obscureText: true),
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _email = _value;
+                });
+              },
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`₩{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: 'Email',
+              obscureText: false,
+              message: '이메일 항목을 입력해주십시요.',
+            ),
+            CustomTextFormField(
+              onSaved: (_value) {
+                setState(() {
+                  _password = _value;
+                });
+              },
+              regEx: r".{8,}",
+              hintText: 'Password',
+              obscureText: true,
+              message: '비밀번호 8자리 이상 입력해주십시요.',
+            ),
           ],
         ),
       ),

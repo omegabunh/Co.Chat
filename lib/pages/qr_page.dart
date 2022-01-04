@@ -74,6 +74,7 @@ class _QrPageState extends State<QrPage> {
             Text(
               name,
               style: const TextStyle(
+                color: Colors.white,
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
               ),
@@ -93,6 +94,7 @@ class _QrPageState extends State<QrPage> {
                 return Text(
                   formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]),
                   style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 50,
                     fontWeight: FontWeight.w600,
                   ),
