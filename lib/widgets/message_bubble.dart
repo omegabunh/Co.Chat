@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 //Packages
 import 'package:timeago/timeago.dart' as timeago;
@@ -92,9 +93,9 @@ class ImageMessageBubble extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        // color: isOwnMessage
-        //     ? Color.fromRGBO(204, 255, 204, 1.0)
-        //     : Color.fromRGBO(153, 255, 153, 1.0),
+        color: isOwnMessage
+            ? Color.fromRGBO(204, 255, 204, 1.0)
+            : Color.fromRGBO(153, 255, 153, 1.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -109,7 +110,7 @@ class ImageMessageBubble extends StatelessWidget {
                 tag: '$_image',
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(15),
                     image: _image,
                   ),
                 ),
@@ -125,8 +126,10 @@ class ImageMessageBubble extends StatelessWidget {
                         child: Center(
                           child: Hero(
                             tag: '$_image',
-                            child: Image.network(
-                              message.content,
+                            child: PinchZoom(
+                              child: Image.network(message.content),
+                              resetDuration: const Duration(milliseconds: 100),
+                              maxScale: 2.5,
                             ),
                           ),
                         ),
