@@ -39,7 +39,7 @@ class TextMessageBubble extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(left: 15, right: 15.0, top: 10, bottom: 10),
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
                 child: Text(
                   message.content,
                   style: TextStyle(

@@ -165,10 +165,7 @@ class _ChatPageState extends State<ChatPage> {
         color: Color.fromRGBO(64, 127, 104, 1.0),
         borderRadius: BorderRadius.circular(100),
       ),
-      margin: EdgeInsets.symmetric(
-        horizontal: _deviceWidth * 0.04,
-        vertical: _deviceHeight * 0.03,
-      ),
+      margin: EdgeInsets.all(10),
       child: Form(
         key: _messageFormState,
         child: Row(

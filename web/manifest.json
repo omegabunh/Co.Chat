@@ -1,6 +1,6 @@
 {
-    "name": "chatify_app",
-    "short_name": "chatify_app",
+    "name": "Co.Chat",
+    "short_name": "Co.Chat",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

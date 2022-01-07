@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chatify_app">
+    package="com.example.CoChat">
    <application
         android:label="Co.Chat"
         android:icon="@mipmap/launcher_icon">
