@@ -22,47 +22,29 @@ class TextMessageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('ko', timeago.KoMessages());
-    return Container(
-      height: height + (message.content.length / 20 * 6.0),
-      width: width,
-      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-      child: Align(
-        alignment: isOwnMessage ? Alignment.centerRight : Alignment.centerLeft,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: isOwnMessage
-                ? Color.fromRGBO(204, 255, 204, 1.0)
-                : Color.fromRGBO(153, 255, 153, 1.0),
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
-                child: Text(
-                  message.content,
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+    return Flexible(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+        child: Align(
+          alignment:
+              isOwnMessage ? Alignment.centerRight : Alignment.centerLeft,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: isOwnMessage
+                  ? const Color.fromRGBO(204, 255, 204, 1.0)
+                  : const Color.fromRGBO(153, 255, 153, 1.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 10, bottom: 10),
+              child: Text(
+                message.content,
+                style: const TextStyle(
+                  color: Colors.black,
                 ),
               ),
-              Positioned(
-                bottom: 0.0,
-                right: 5.0,
-                child: Row(
-                  children: [
-                    Text(
-                      timeago.format(message.sentTime, locale: 'ko'),
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.black45,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
         ),
       ),
@@ -94,8 +76,8 @@ class ImageMessageBubble extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: isOwnMessage
-            ? Color.fromRGBO(204, 255, 204, 1.0)
-            : Color.fromRGBO(153, 255, 153, 1.0),
+            ? const Color.fromRGBO(204, 255, 204, 1.0)
+            : const Color.fromRGBO(153, 255, 153, 1.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -142,14 +124,6 @@ class ImageMessageBubble extends StatelessWidget {
                 ),
               );
             },
-          ),
-          SizedBox(height: height * 0.02),
-          Text(
-            timeago.format(message.sentTime, locale: 'ko'),
-            style: TextStyle(
-              fontSize: 10,
-              color: Colors.black45,
-            ),
           ),
         ],
       ),

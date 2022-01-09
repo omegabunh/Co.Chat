@@ -34,6 +34,7 @@ class _QrPageState extends State<QrPage> {
   //qr code time
   String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
 
+  @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
@@ -61,7 +62,7 @@ class _QrPageState extends State<QrPage> {
             TopBar(
               'QR Code',
               primaryAction: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.logout,
                   color: Color.fromRGBO(0, 82, 218, 1.0),
                 ),
@@ -79,7 +80,7 @@ class _QrPageState extends State<QrPage> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             QrImage(
               data: "$uid $now",
               version: QrVersions.auto,
@@ -87,7 +88,7 @@ class _QrPageState extends State<QrPage> {
               backgroundColor: Colors.white,
               gapless: false,
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             TimerBuilder.periodic(
               const Duration(seconds: 1),
               builder: (context) {
@@ -107,6 +108,7 @@ class _QrPageState extends State<QrPage> {
     });
   }
 
+  // ignore: non_constant_identifier_names
   Widget ProfileImage() {
     return Container(
       width: _deviceWidth * 0.30,
@@ -116,7 +118,7 @@ class _QrPageState extends State<QrPage> {
           fit: BoxFit.cover,
           image: NetworkImage(profileImage),
         ),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(100),
         ),
         color: Colors.black,

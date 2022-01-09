@@ -9,6 +9,7 @@ const String USER_COLLECTION = "Users";
 
 class CloudStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  // ignore: empty_constructor_bodies
   CloudStorageService() {}
 
   Future<String?> saveUserImageToStorage(

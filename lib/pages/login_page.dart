@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _pageTitle() {
     return Container(
       height: _deviceHeight * 0.10,
-      child: Text(
+      child: const Text(
         'Co.Chat',
         style: TextStyle(
           color: Colors.white,
@@ -145,12 +145,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget _registerAccountLink() {
     return GestureDetector(
       onTap: () => _navigation.navigateToRoute('/register'),
-      child: Container(
-        child: Text(
-          '회원가입',
-          style: TextStyle(
-            color: Colors.white,
-          ),
+      child: const Text(
+        '회원가입',
+        style: TextStyle(
+          color: Colors.white,
         ),
       ),
     );

@@ -37,19 +37,19 @@ class _HomePageState extends State<HomePage> {
           });
         },
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             label: "Users",
             icon: Icon(
               Icons.supervisor_account_sharp,
             ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             label: "Chats",
             icon: Icon(
               Icons.chat_bubble_sharp,
             ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             label: "QR Code",
             icon: Icon(
               Icons.qr_code_sharp,

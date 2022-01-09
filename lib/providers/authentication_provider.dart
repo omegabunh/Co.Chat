@@ -10,7 +10,6 @@ import '../services/navigation_service.dart';
 
 //Models
 import '../models/chat_user.dart';
-import '../models/chat.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   late final FirebaseAuth _auth;

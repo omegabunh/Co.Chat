@@ -34,7 +34,8 @@ class CustomListViewTile extends StatelessWidget {
   Widget build(BuildContext context) {
     timeago.setLocaleMessages('ko', timeago.KoMessages());
     return ListTile(
-      trailing: isSelected ? Icon(Icons.check, color: Colors.white) : null,
+      trailing:
+          isSelected ? const Icon(Icons.check, color: Colors.white) : null,
       onTap: () => onTap(),
       minVerticalPadding: height * 0.20,
       leading: RoundedImageNetworkWithStatusIndicator(
@@ -45,7 +46,7 @@ class CustomListViewTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w500,
@@ -53,7 +54,7 @@ class CustomListViewTile extends StatelessWidget {
       ),
       subtitle: Text(
         subtitle,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white54,
           fontSize: 12,
           fontWeight: FontWeight.w400,
@@ -95,7 +96,7 @@ class CustomListViewTileWithActivity extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w500,
@@ -115,7 +116,7 @@ class CustomListViewTileWithActivity extends StatelessWidget {
             )
           : Text(
               subtitle,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white54,
                   fontSize: 12,
                   fontWeight: FontWeight.w400),
@@ -142,7 +143,7 @@ class CustomChatListViewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       width: width,
       child: Row(
         mainAxisSize: MainAxisSize.max,
@@ -154,8 +155,17 @@ class CustomChatListViewTile extends StatelessWidget {
               ? RoundedImageNetwork(
                   key: UniqueKey(),
                   imagePath: sender.imageURL,
-                  size: width * 0.1)
+                  size: width * 0.13)
               : Container(),
+          !isOwnMessage
+              ? Container()
+              : Text(
+                  timeago.format(message.sentTime, locale: 'ko'),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: Colors.black45,
+                  ),
+                ),
           SizedBox(
             width: width * 0.01,
           ),
@@ -170,6 +180,15 @@ class CustomChatListViewTile extends StatelessWidget {
                   message: message,
                   height: deviceHeight * 0.30,
                   width: width * 0.55,
+                ),
+          isOwnMessage
+              ? Container()
+              : Text(
+                  timeago.format(message.sentTime, locale: 'ko'),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: Colors.black45,
+                  ),
                 ),
         ],
       ),

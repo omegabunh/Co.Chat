@@ -71,7 +71,7 @@ class _ChatsPageState extends State<ChatsPage> {
             TopBar(
               'Co.Chat',
               primaryAction: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.logout,
                   color: Color.fromRGBO(0, 82, 218, 1.0),
                 ),
@@ -100,7 +100,7 @@ class _ChatsPageState extends State<ChatsPage> {
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text(
                 "채팅을 찾을수 없음.",
                 style: TextStyle(color: Colors.white),
@@ -108,7 +108,7 @@ class _ChatsPageState extends State<ChatsPage> {
             );
           }
         } else {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: Colors.white,
             ),

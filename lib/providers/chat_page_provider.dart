@@ -37,6 +37,7 @@ class ChatPageProvider extends ChangeNotifier {
   String? _message;
 
   String get message {
+    // ignore: recursive_getters
     return message;
   }
 

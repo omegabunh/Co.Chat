@@ -13,13 +13,12 @@ import '../models/chat_message.dart';
 
 //Porviders
 import '../providers/authentication_provider.dart';
-import '../providers/chats_page_provider.dart';
 import '../providers/chat_page_provider.dart';
 
 class ChatPage extends StatefulWidget {
   final Chat chat;
 
-  ChatPage({required this.chat});
+  const ChatPage({required this.chat});
 
   @override
   State<StatefulWidget> createState() {
@@ -53,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
       providers: [
         ChangeNotifierProvider<ChatPageProvider>(
           create: (_) => ChatPageProvider(
-              this.widget.chat.uid, _auth, _messagesListViewController),
+              widget.chat.uid, _auth, _messagesListViewController),
         )
       ],
       child: _buildUI(),
@@ -79,10 +78,10 @@ class _ChatPageState extends State<ChatPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TopBar(
-                    this.widget.chat.title(),
+                    widget.chat.title(),
                     fontSize: 20,
                     primaryAction: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete_rounded,
                         color: Color.fromRGBO(0, 82, 218, 1.0),
                       ),
@@ -91,7 +90,7 @@ class _ChatPageState extends State<ChatPage> {
                       },
                     ),
                     secondaryAction: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,
                         color: Color.fromRGBO(0, 82, 218, 1.0),
                       ),
@@ -123,25 +122,20 @@ class _ChatPageState extends State<ChatPage> {
             itemBuilder: (BuildContext _context, int _index) {
               ChatMessage _message = _pageProvider.messages![_index];
               bool _isOwnMessage = _message.senderID == _auth.user.uid;
-              return Container(
-                child: CustomChatListViewTile(
-                  deviceHeight: _deviceHeight,
-                  width: _deviceWidth * 0.80,
-                  message: _message,
-                  isOwnMessage: _isOwnMessage,
-                  sender: this
-                      .widget
-                      .chat
-                      .members
-                      .where((_m) => _m.uid == _message.senderID)
-                      .first,
-                ),
+              return CustomChatListViewTile(
+                deviceHeight: _deviceHeight,
+                width: _deviceWidth * 0.80,
+                message: _message,
+                isOwnMessage: _isOwnMessage,
+                sender: widget.chat.members
+                    .where((_m) => _m.uid == _message.senderID)
+                    .first,
               );
             },
           ),
         );
       } else {
-        return Align(
+        return const Align(
           alignment: Alignment.center,
           child: Text(
             "만나서 반가워요!",
@@ -150,7 +144,7 @@ class _ChatPageState extends State<ChatPage> {
         );
       }
     } else {
-      return Center(
+      return const Center(
         child: CircularProgressIndicator(
           color: Colors.white,
         ),
@@ -162,10 +156,10 @@ class _ChatPageState extends State<ChatPage> {
     return Container(
       height: _deviceHeight * 0.06,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(64, 127, 104, 1.0),
+        color: const Color.fromRGBO(64, 127, 104, 1.0),
         borderRadius: BorderRadius.circular(100),
       ),
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       child: Form(
         key: _messageFormState,
         child: Row(

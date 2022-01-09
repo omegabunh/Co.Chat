@@ -11,6 +11,7 @@ const String MESSAGES_COLLECTION = "messages";
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
+  // ignore: empty_constructor_bodies
   DatabaseService() {}
 
   Future<void> createUser(
