@@ -112,7 +112,7 @@ class _QrPageState extends State<QrPage> {
   Widget ProfileImage() {
     return Container(
       width: _deviceWidth * 0.30,
-      height: _deviceHeight * 0.15,
+      height: _deviceHeight * 0.14,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,

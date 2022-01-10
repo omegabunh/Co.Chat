@@ -163,7 +163,7 @@ class CustomChatListViewTile extends StatelessWidget {
                   timeago.format(message.sentTime, locale: 'ko'),
                   style: const TextStyle(
                     fontSize: 10,
-                    color: Colors.black45,
+                    color: Colors.white,
                   ),
                 ),
           SizedBox(
@@ -187,7 +187,7 @@ class CustomChatListViewTile extends StatelessWidget {
                   timeago.format(message.sentTime, locale: 'ko'),
                   style: const TextStyle(
                     fontSize: 10,
-                    color: Colors.black45,
+                    color: Colors.white,
                   ),
                 ),
         ],
