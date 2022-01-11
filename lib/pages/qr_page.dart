@@ -1,9 +1,6 @@
 //Packages
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:get_it/get_it.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:timer_builder/timer_builder.dart';

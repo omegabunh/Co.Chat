@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import '../services/media_service.dart';
 import '../services/database_service.dart';
 import '../services/cloud_storage_service.dart';
-import '../services/navigation_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';

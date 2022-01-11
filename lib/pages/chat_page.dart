@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 //Widgets
 import '../widgets/top_bar.dart';
 import '../widgets/custom_list_view_tiles.dart';
-import '../widgets/custom_input_fields.dart';
+import '../widgets/chat_input_fields.dart';
 
 //Modles
 import '../models/chat.dart';
@@ -153,78 +153,25 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _sendMessageForm() {
-    return Container(
-      height: _deviceHeight * 0.06,
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(64, 127, 104, 1.0),
-        borderRadius: BorderRadius.circular(100),
-      ),
-      margin: const EdgeInsets.all(10),
-      child: Form(
-        key: _messageFormState,
-        child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _imageMessageButton(),
-              _messageTextField(),
-              _sendMessageButton(),
-            ]),
-      ),
-    );
-  }
-
-  Widget _messageTextField() {
-    return SizedBox(
-      width: _deviceWidth * 0.65,
-      child: CustomTextFormField(
+    return Form(
+      key: _messageFormState,
+      child: ChatTextFormField(
+        size: _deviceHeight * 0.04,
         onSaved: (_value) {
           _pageProvider.message = _value;
         },
         regEx: r"^(?!\s*$).+",
-        hintText: "",
-        obscureText: false,
         message: '',
-      ),
-    );
-  }
-
-  Widget _sendMessageButton() {
-    double _size = _deviceHeight * 0.04;
-    return Container(
-      height: _size,
-      width: _size,
-      child: FloatingActionButton(
-        heroTag: "sendMessage",
-        backgroundColor: Color.fromRGBO(64, 200, 104, 1.0),
-        child: Icon(
-          Icons.arrow_upward,
-          color: Colors.white,
-        ),
-        onPressed: () {
+        send: () {
           if (_messageFormState.currentState!.validate()) {
             _messageFormState.currentState!.save();
             _pageProvider.sendTextMessage();
             _messageFormState.currentState!.reset();
           }
         },
-      ),
-    );
-  }
-
-  Widget _imageMessageButton() {
-    double _size = _deviceHeight * 0.04;
-    return Container(
-      height: _size,
-      width: _size,
-      child: FloatingActionButton(
-        heroTag: "sendImage",
-        backgroundColor: Color.fromRGBO(64, 200, 104, 1.0),
-        onPressed: () {
+        imageSend: () {
           _pageProvider.sendImageMessage();
         },
-        child: Icon(Icons.photo_camera_rounded),
       ),
     );
   }
