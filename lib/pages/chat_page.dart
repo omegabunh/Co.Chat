@@ -48,14 +48,19 @@ class _ChatPageState extends State<ChatPage> {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ChatPageProvider>(
-          create: (_) => ChatPageProvider(
-              widget.chat.uid, _auth, _messagesListViewController),
-        )
-      ],
-      child: _buildUI(),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ChatPageProvider>(
+            create: (_) => ChatPageProvider(
+                widget.chat.uid, _auth, _messagesListViewController),
+          )
+        ],
+        child: _buildUI(),
+      ),
     );
   }
 
