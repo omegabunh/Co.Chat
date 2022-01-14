@@ -76,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
                 vertical: _deviceHeight * 0.02,
               ),
               height: _deviceHeight,
-              width: _deviceWidth * 0.97,
+              width: _deviceWidth,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +87,7 @@ class _ChatPageState extends State<ChatPage> {
                     fontSize: 20,
                     primaryAction: IconButton(
                       icon: const Icon(
-                        Icons.delete_rounded,
+                        Icons.exit_to_app,
                         color: Color.fromRGBO(0, 82, 218, 1.0),
                       ),
                       onPressed: () {
@@ -158,25 +158,28 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _sendMessageForm() {
-    return Form(
-      key: _messageFormState,
-      child: ChatTextFormField(
-        size: _deviceHeight * 0.04,
-        onSaved: (_value) {
-          _pageProvider.message = _value;
-        },
-        regEx: r"^(?!\s*$).+",
-        message: '',
-        send: () {
-          if (_messageFormState.currentState!.validate()) {
-            _messageFormState.currentState!.save();
-            _pageProvider.sendTextMessage();
-            _messageFormState.currentState!.reset();
-          }
-        },
-        imageSend: () {
-          _pageProvider.sendImageMessage();
-        },
+    return Container(
+      margin: const EdgeInsets.only(right: 15, left: 15, bottom: 10),
+      child: Form(
+        key: _messageFormState,
+        child: ChatTextFormField(
+          size: _deviceHeight * 0.04,
+          onSaved: (_value) {
+            _pageProvider.message = _value;
+          },
+          regEx: r"^(?!\s*$).+",
+          message: '',
+          send: () {
+            if (_messageFormState.currentState!.validate()) {
+              _messageFormState.currentState!.save();
+              _pageProvider.sendTextMessage();
+              _messageFormState.currentState!.reset();
+            }
+          },
+          imageSend: () {
+            _pageProvider.sendImageMessage();
+          },
+        ),
       ),
     );
   }

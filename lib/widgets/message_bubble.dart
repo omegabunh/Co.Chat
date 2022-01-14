@@ -21,30 +21,29 @@ class TextMessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    timeago.setLocaleMessages('ko', timeago.KoMessages());
     return Flexible(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-        child: Align(
-          alignment:
-              isOwnMessage ? Alignment.centerRight : Alignment.centerLeft,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: isOwnMessage
-                  ? const Color.fromRGBO(204, 255, 204, 1.0)
-                  : const Color.fromRGBO(153, 255, 153, 1.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, top: 10, bottom: 10),
-              child: Text(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: isOwnMessage
+              ? const Color.fromRGBO(204, 255, 204, 1.0)
+              : const Color.fromRGBO(153, 255, 153, 1.0),
+        ),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 message.content,
                 style: const TextStyle(
                   color: Colors.black,
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -111,7 +110,7 @@ class ImageMessageBubble extends StatelessWidget {
                             child: PinchZoom(
                               child: Image.network(message.content),
                               resetDuration: const Duration(milliseconds: 100),
-                              maxScale: 2.5,
+                              maxScale: 3,
                             ),
                           ),
                         ),
