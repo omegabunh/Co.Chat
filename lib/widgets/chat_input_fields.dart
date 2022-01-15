@@ -41,24 +41,33 @@ class ChatTextFormField extends StatelessWidget {
         prefixIcon: SizedBox(
           height: size,
           width: size,
-          child: FloatingActionButton(
-            heroTag: "sendImage",
-            backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
-            onPressed: imageSend,
-            child: const Icon(Icons.photo_camera_rounded),
+          child: Transform.scale(
+            scale: 0.7,
+            child: FloatingActionButton(
+              heroTag: "sendImage",
+              backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
+              onPressed: imageSend,
+              child: const Icon(
+                Icons.photo_camera_rounded,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
         suffixIcon: SizedBox(
           height: size,
           width: size,
-          child: FloatingActionButton(
-            heroTag: "sendMessage",
-            backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
-            child: const Icon(
-              Icons.arrow_upward,
-              color: Colors.white,
+          child: Transform.scale(
+            scale: 0.7,
+            child: FloatingActionButton(
+              heroTag: "sendMessage",
+              backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
+              onPressed: send,
+              child: const Icon(
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
             ),
-            onPressed: send,
           ),
         ),
       ),
