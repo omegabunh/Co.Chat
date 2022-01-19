@@ -37,7 +37,7 @@ class TextMessageBubble extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              SelectableText(
                 message.content,
                 style: const TextStyle(
                   color: Colors.black,
