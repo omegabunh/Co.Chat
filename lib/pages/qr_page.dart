@@ -49,8 +49,8 @@ class _QrPageState extends State<QrPage> {
           horizontal: _deviceWidth * 0.03,
           vertical: _deviceHeight * 0.02,
         ),
-        height: _deviceHeight * 0.98,
-        width: _deviceWidth * 0.97,
+        height: _deviceHeight,
+        width: _deviceWidth,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -108,8 +108,8 @@ class _QrPageState extends State<QrPage> {
   // ignore: non_constant_identifier_names
   Widget ProfileImage() {
     return Container(
-      width: _deviceWidth * 0.30,
-      height: _deviceHeight * 0.14,
+      width: 100,
+      height: 100,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,

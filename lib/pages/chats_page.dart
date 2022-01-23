@@ -61,8 +61,8 @@ class _ChatsPageState extends State<ChatsPage> {
           horizontal: _deviceWidth * 0.03,
           vertical: _devieHeight * 0.02,
         ),
-        height: _devieHeight * 0.98,
-        width: _deviceWidth * 0.97,
+        height: _devieHeight,
+        width: _deviceWidth,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,

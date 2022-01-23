@@ -55,9 +55,11 @@ class _UsersPageState extends State<UsersPage> {
         _pageProvider = _context.watch<UsersPageProvider>();
         return Container(
           padding: EdgeInsets.symmetric(
-              horizontal: _deviceWidth * 0.03, vertical: _deviceHeight * 0.02),
-          height: _deviceHeight * 0.98,
-          width: _deviceWidth * 0.97,
+            horizontal: _deviceWidth * 0.03,
+            vertical: _deviceHeight * 0.02,
+          ),
+          height: _deviceHeight,
+          width: _deviceWidth,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -65,14 +67,27 @@ class _UsersPageState extends State<UsersPage> {
             children: [
               TopBar(
                 "Users",
-                primaryAction: IconButton(
+                primaryAction: PopupMenuButton(
                   icon: const Icon(
-                    Icons.logout,
+                    Icons.more_vert,
                     color: Color.fromRGBO(0, 82, 218, 1.0),
                   ),
-                  onPressed: () {
-                    _auth.logout();
-                  },
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                    PopupMenuItem(
+                      child: ListTile(
+                        title: const Text('로그아웃'),
+                        onTap: () {
+                          _auth.logout();
+                        },
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: ListTile(
+                        title: const Text('프로필 수정'),
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
                 ),
               ),
               CustomTextField(
