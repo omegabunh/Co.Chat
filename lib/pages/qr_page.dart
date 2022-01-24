@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:flutter_countdown_timer/index.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 
@@ -20,7 +20,7 @@ class QrPage extends StatefulWidget {
   }
 }
 
-class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
+class _QrPageState extends State<QrPage> {
   late double _deviceHeight;
   late double _deviceWidth;
   late String uid;
@@ -29,15 +29,13 @@ class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
 
   late AuthenticationProvider _auth;
 
+  bool _visibility = true;
+
   //qr code time
   String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
 
-  int _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 15;
-
-  bool _visibility = true;
-
-  @override
-  bool get wantKeepAlive => true;
+  int _endTime = DateTime.now().millisecondsSinceEpoch +
+      const Duration(seconds: 15).inMilliseconds;
 
   @override
   Widget build(BuildContext context) {
@@ -90,16 +88,22 @@ class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
               QrCodeImage(),
               const SizedBox(height: 40),
               CountdownTimer(
-                endWidget: QrRefreshButton(),
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                  fontWeight: FontWeight.w600,
-                ),
                 endTime: _endTime,
-                // widgetBuilder: (_, CurrentRemainingTime time) {
-                //   return Text('[ ${time.sec} ]');
-                // },
+                widgetBuilder: (_, CurrentRemainingTime? time) {
+                  if (time == null) {
+                    return QrRefreshButton();
+                  }
+                  return SizedBox(
+                    child: Text(
+                      '${time.sec}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 50,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  );
+                },
                 onEnd: _hide,
               ),
               const SizedBox(height: 40),
@@ -155,7 +159,8 @@ class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
 
   void updateUI() {
     setState(() {
-      _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 15;
+      _endTime = DateTime.now().millisecondsSinceEpoch +
+          const Duration(seconds: 15).inMilliseconds;
       now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
       _show();
     });

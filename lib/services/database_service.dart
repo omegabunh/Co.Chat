@@ -30,6 +30,22 @@ class DatabaseService {
     }
   }
 
+  Future<void> updateUser(
+      String _uid, String _email, String _name, String _imageURL) async {
+    try {
+      await _db.collection(USER_COLLECTION).doc(_uid).set(
+        {
+          "email": _email,
+          "image": _imageURL,
+          "last_active": DateTime.now().toUtc(),
+          "name": _name,
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<void> updateChatData(
       String _chatID, Map<String, dynamic> _data) async {
     try {

@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       child: const Text(
-        "Login",
+        "로그인",
         style: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
       ),
@@ -155,7 +155,6 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(10),
         child: const SpinKitRotatingCircle(
           color: Colors.white,
-          // size: loaderWidth ,
         ),
       ),
       borderRadius: 5.0,

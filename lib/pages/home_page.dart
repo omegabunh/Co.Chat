@@ -39,23 +39,24 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentPage,
         onTap: _onItemTapped,
+        // ignore: prefer_const_literals_to_create_immutables
         items: [
           const BottomNavigationBarItem(
             label: "Users",
             icon: Icon(
-              Icons.supervisor_account_sharp,
+              Icons.person,
             ),
           ),
           const BottomNavigationBarItem(
             label: "Chats",
             icon: Icon(
-              Icons.chat_bubble_sharp,
+              Icons.chat_bubble_rounded,
             ),
           ),
           const BottomNavigationBarItem(
             label: "QR Code",
             icon: Icon(
-              Icons.qr_code_sharp,
+              Icons.qr_code_rounded,
             ),
           ),
         ],
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         controller: pageController,
         onPageChanged: _onPageChanged,
         children: _pages,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
       ),
     );
   }

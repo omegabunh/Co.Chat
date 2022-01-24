@@ -1,4 +1,5 @@
 //Packages
+import 'package:Co.Chat/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -84,7 +85,14 @@ class _UsersPageState extends State<UsersPage> {
                     PopupMenuItem(
                       child: ListTile(
                         title: const Text('프로필 수정'),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            _context,
+                            MaterialPageRoute(
+                              builder: (_context) => ProfilePage(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],

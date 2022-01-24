@@ -1,4 +1,5 @@
 //Packages
+import 'package:Co.Chat/pages/users_page.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -15,18 +16,19 @@ import '../services/cloud_storage_service.dart';
 import '../widgets/custom_input_fields.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
+import '../widgets/top_bar.dart';
 
 //Providers
 import '../providers/authentication_provider.dart';
 
-class RegisterPage extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _RegisterPageState();
+    return _ProfilePageState();
   }
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _ProfilePageState extends State<ProfilePage> {
   late double _deviceHeight;
   late double _deviceWidth;
 
@@ -34,12 +36,13 @@ class _RegisterPageState extends State<RegisterPage> {
   late DatabaseService _db;
   late CloudStorageService _cloudStorage;
 
-  String? _email;
-  String? _password;
+  late String uid;
+  late String email;
+  late String name;
+  late String profileImage;
+
   String? _name;
   PlatformFile? _profileImage;
-  String? _companyCode;
-  String companyCode = '123456';
 
   final _registerFormKey = GlobalKey<FormState>();
 
@@ -54,6 +57,10 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _buildUI() {
+    uid = _auth.user.uid;
+    name = _auth.user.name;
+    email = _auth.user.email;
+    profileImage = _auth.user.imageURL;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -65,21 +72,39 @@ class _RegisterPageState extends State<RegisterPage> {
         width: _deviceWidth * 0.97,
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            TopBar(
+              'Edit profile',
+              primaryAction: IconButton(
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Color.fromRGBO(0, 82, 218, 1.0),
+                ),
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UsersPage(),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: _deviceHeight * 0.05,
+            ),
             _profileImageField(),
+            SizedBox(
+              height: _deviceHeight * 0.01,
+            ),
+            _imageEditButton(),
             SizedBox(
               height: _deviceHeight * 0.05,
             ),
             _registerForm(),
-            SizedBox(
-              height: _deviceHeight * 0.1,
-            ),
-            _registerButton(),
-            SizedBox(
-              height: _deviceHeight * 0.01,
-            ),
+            _nameEditButton(),
           ],
         ),
       ),
@@ -107,8 +132,9 @@ class _RegisterPageState extends State<RegisterPage> {
             size: _deviceHeight * 0.15,
           );
         } else {
-          return RoundedInImageFile(
+          return RoundedUserImageFile(
             key: UniqueKey(),
+            image: profileImage,
             size: _deviceHeight * 0.15,
           );
         }
@@ -117,93 +143,77 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _registerForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.35,
       child: Form(
         key: _registerFormKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _name = _value;
-                });
-              },
-              regEx: r'^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣0-9]{2,6}$',
-              hintText: "Name",
-              obscureText: false,
-              message: '2~6자 이내의 이름을 입력해주십시요.',
-            ),
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _email = _value;
-                });
-              },
-              regEx:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-              hintText: "Email",
-              obscureText: false,
-              message: '이메일 항목을 입력해주십시요.',
-            ),
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _password = _value;
-                });
-              },
-              regEx: r".{8,}",
-              hintText: "Password",
-              obscureText: true,
-              message: '비밀번호 8자리 이상 입력해주십시요.',
-            ),
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _companyCode = _value;
-                });
-              },
-              regEx: r".{6,}",
-              hintText: "CompanyCode",
-              obscureText: false,
-              message: '6자리의 회사코드를 입력해주십시요.',
-            ),
-          ],
+        child: CustomTextFormField(
+          onSaved: (_value) {
+            setState(() {
+              _name = _value;
+            });
+          },
+          regEx: r'^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣0-9]{2,6}$',
+          hintText: name,
+          obscureText: false,
+          message: '2~6자 이내의 이름을 입력해주십시요.',
         ),
       ),
     );
   }
 
-  Widget _registerButton() {
+  Widget _imageEditButton() {
     return ArgonButton(
-      height: _deviceHeight * 0.065,
-      width: _deviceWidth * 0.65,
+      height: _deviceHeight * 0.035,
+      width: _deviceWidth * 0.15,
       roundLoadingShape: true,
       onTap: (startLoading, stopLoading, btnState) async {
         if (btnState == ButtonState.Idle) {
-          if (_registerFormKey.currentState!.validate() &&
-              _profileImage != null) {
+          startLoading();
+          if (_profileImage != null) {
+            String? _imageURL =
+                await _cloudStorage.saveUserImageToStorage(uid, _profileImage!);
+            await _db.updateUser(uid, email, _name!, _imageURL!);
+            await _auth.logout();
+          }
+        } else {
+          stopLoading();
+        }
+      },
+      child: const Icon(
+        Icons.camera_alt,
+        color: Colors.white,
+      ),
+      loader: Container(
+        padding: const EdgeInsets.all(10),
+        child: const SpinKitRotatingCircle(
+          color: Colors.white,
+        ),
+      ),
+      borderRadius: 5.0,
+      color: const Color.fromRGBO(64, 200, 104, 1.0),
+    );
+  }
+
+  Widget _nameEditButton() {
+    return ArgonButton(
+      height: _deviceHeight * 0.065,
+      width: _deviceWidth * 0.35,
+      roundLoadingShape: true,
+      onTap: (startLoading, stopLoading, btnState) async {
+        if (btnState == ButtonState.Idle) {
+          startLoading();
+          if (_registerFormKey.currentState!.validate()) {
             _registerFormKey.currentState!.save();
-            if (_companyCode == companyCode) {
-              startLoading();
-              String? _uid = await _auth.registerUserUsingEmailAndPassword(
-                  _email!, _password!);
-              String? _imageURL = await _cloudStorage.saveUserImageToStorage(
-                  _uid!, _profileImage!);
-              await _db.createUser(_uid, _email!, _name!, _imageURL!);
-              await _auth.logout();
-              await _auth.loginUsingEmailAndPassword(_email!, _password!);
-            }
+            await _db.updateUser(uid, email, _name!, profileImage);
+            await _auth.logout();
           }
         } else {
           stopLoading();
         }
       },
       child: const Text(
-        "회원가입",
+        "이름 변경",
         style: TextStyle(
             color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
       ),

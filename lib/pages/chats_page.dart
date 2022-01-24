@@ -69,7 +69,7 @@ class _ChatsPageState extends State<ChatsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TopBar(
-              'Co.Chat',
+              'Chats',
               primaryAction: IconButton(
                 icon: const Icon(
                   Icons.logout,
