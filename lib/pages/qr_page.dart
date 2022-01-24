@@ -20,7 +20,7 @@ class QrPage extends StatefulWidget {
   }
 }
 
-class _QrPageState extends State<QrPage> {
+class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
   late double _deviceHeight;
   late double _deviceWidth;
   late String uid;
@@ -30,6 +30,9 @@ class _QrPageState extends State<QrPage> {
   late AuthenticationProvider _auth;
 
   bool _visibility = true;
+
+  @override
+  bool get wantKeepAlive => true;
 
   //qr code time
   String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
