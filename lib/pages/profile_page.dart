@@ -68,8 +68,8 @@ class _ProfilePageState extends State<ProfilePage> {
           horizontal: _deviceWidth * 0.03,
           vertical: _deviceHeight * 0.02,
         ),
-        height: _deviceHeight * 0.98,
-        width: _deviceWidth * 0.97,
+        height: _deviceHeight,
+        width: _deviceWidth,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
