@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:date_format/date_format.dart';
 
@@ -19,7 +20,7 @@ class QrPage extends StatefulWidget {
   }
 }
 
-class _QrPageState extends State<QrPage> {
+class _QrPageState extends State<QrPage> with AutomaticKeepAliveClientMixin {
   late double _deviceHeight;
   late double _deviceWidth;
   late String uid;
@@ -30,6 +31,13 @@ class _QrPageState extends State<QrPage> {
 
   //qr code time
   String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
+
+  int _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 15;
+
+  bool _visibility = true;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,66 +51,63 @@ class _QrPageState extends State<QrPage> {
     uid = _auth.user.uid;
     name = _auth.user.name;
     profileImage = _auth.user.imageURL;
-    return Builder(builder: (BuildContext _context) {
-      return Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: _deviceWidth * 0.03,
-          vertical: _deviceHeight * 0.02,
-        ),
-        height: _deviceHeight,
-        width: _deviceWidth,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TopBar(
-              'QR Code',
-              primaryAction: IconButton(
-                icon: const Icon(
-                  Icons.logout,
-                  color: Color.fromRGBO(0, 82, 218, 1.0),
-                ),
-                onPressed: () {
-                  _auth.logout();
-                },
-              ),
-            ),
-            ProfileImage(),
-            Text(
-              name,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 40),
-            QrImage(
-              data: "$uid $now",
-              version: QrVersions.auto,
-              size: 200,
-              backgroundColor: Colors.white,
-              gapless: false,
-            ),
-            const SizedBox(height: 40),
-            TimerBuilder.periodic(
-              const Duration(seconds: 1),
-              builder: (context) {
-                return Text(
-                  formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.w600,
+    return Builder(
+      builder: (BuildContext _context) {
+        return Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: _deviceWidth * 0.03,
+            vertical: _deviceHeight * 0.02,
+          ),
+          height: _deviceHeight,
+          width: _deviceWidth,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TopBar(
+                'QR Code',
+                primaryAction: IconButton(
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Color.fromRGBO(0, 82, 218, 1.0),
                   ),
-                );
-              },
-            ),
-          ],
-        ),
-      );
-    });
+                  onPressed: () {
+                    _auth.logout();
+                  },
+                ),
+              ),
+              ProfileImage(),
+              Text(
+                name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 40),
+              QrCodeImage(),
+              const SizedBox(height: 40),
+              CountdownTimer(
+                endWidget: QrRefreshButton(),
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 50,
+                  fontWeight: FontWeight.w600,
+                ),
+                endTime: _endTime,
+                // widgetBuilder: (_, CurrentRemainingTime time) {
+                //   return Text('[ ${time.sec} ]');
+                // },
+                onEnd: _hide,
+              ),
+              const SizedBox(height: 40),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   // ignore: non_constant_identifier_names
@@ -121,5 +126,50 @@ class _QrPageState extends State<QrPage> {
         color: Colors.black,
       ),
     );
+  }
+
+  Widget QrCodeImage() {
+    return Visibility(
+      visible: _visibility,
+      child: QrImage(
+        data: "$uid $now",
+        version: QrVersions.auto,
+        size: 200,
+        backgroundColor: Colors.white,
+        gapless: false,
+      ),
+    );
+  }
+
+  Widget QrRefreshButton() {
+    return FloatingActionButton(
+      heroTag: "sendImage",
+      backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
+      onPressed: updateUI,
+      child: const Icon(
+        Icons.refresh,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  void updateUI() {
+    setState(() {
+      _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 15;
+      now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
+      _show();
+    });
+  }
+
+  void _show() {
+    setState(() {
+      _visibility = true;
+    });
+  }
+
+  void _hide() {
+    setState(() {
+      _visibility = false;
+    });
   }
 }

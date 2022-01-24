@@ -30,7 +30,7 @@ class ChatsPage extends StatefulWidget {
 }
 
 class _ChatsPageState extends State<ChatsPage> {
-  late double _devieHeight;
+  late double _deviceHeight;
   late double _deviceWidth;
 
   late AuthenticationProvider _auth;
@@ -39,7 +39,7 @@ class _ChatsPageState extends State<ChatsPage> {
 
   @override
   Widget build(BuildContext context) {
-    _devieHeight = MediaQuery.of(context).size.height;
+    _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
     _navigation = GetIt.instance.get<NavigationService>();
@@ -59,9 +59,9 @@ class _ChatsPageState extends State<ChatsPage> {
       return Container(
         padding: EdgeInsets.symmetric(
           horizontal: _deviceWidth * 0.03,
-          vertical: _devieHeight * 0.02,
+          vertical: _deviceHeight * 0.02,
         ),
-        height: _devieHeight,
+        height: _deviceHeight,
         width: _deviceWidth,
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -128,7 +128,7 @@ class _ChatsPageState extends State<ChatsPage> {
           : _chat.messages.first.content;
     }
     return CustomListViewTileWithActivity(
-        height: _devieHeight * 0.10,
+        height: _deviceHeight * 0.10,
         title: _chat.title(),
         subtitle: _subtitleText,
         imagePath: _chat.imageURL(),

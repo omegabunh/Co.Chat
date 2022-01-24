@@ -1,5 +1,7 @@
 //Packages
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
@@ -129,16 +131,35 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginButton() {
-    return RoundedButton(
-      name: "Login",
+    return ArgonButton(
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
-      onPressed: () {
-        if (_loginFormKey.currentState!.validate()) {
-          _loginFormKey.currentState!.save();
-          _auth.loginUsingEmailAndPassword(_email!, _password!);
+      roundLoadingShape: true,
+      onTap: (startLoading, stopLoading, btnState) {
+        if (btnState == ButtonState.Idle) {
+          if (_loginFormKey.currentState!.validate()) {
+            _loginFormKey.currentState!.save();
+            _auth.loginUsingEmailAndPassword(_email!, _password!);
+            startLoading();
+          }
+        } else {
+          stopLoading();
         }
       },
+      child: const Text(
+        "Login",
+        style: TextStyle(
+            color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
+      ),
+      loader: Container(
+        padding: const EdgeInsets.all(10),
+        child: const SpinKitRotatingCircle(
+          color: Colors.white,
+          // size: loaderWidth ,
+        ),
+      ),
+      borderRadius: 5.0,
+      color: const Color.fromRGBO(64, 200, 104, 1.0),
     );
   }
 
