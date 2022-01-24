@@ -138,9 +138,9 @@ class _LoginPageState extends State<LoginPage> {
       onTap: (startLoading, stopLoading, btnState) {
         if (btnState == ButtonState.Idle) {
           if (_loginFormKey.currentState!.validate()) {
+            startLoading();
             _loginFormKey.currentState!.save();
             _auth.loginUsingEmailAndPassword(_email!, _password!);
-            startLoading();
           }
         } else {
           stopLoading();

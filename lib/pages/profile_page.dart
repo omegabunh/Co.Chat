@@ -169,8 +169,8 @@ class _ProfilePageState extends State<ProfilePage> {
       roundLoadingShape: true,
       onTap: (startLoading, stopLoading, btnState) async {
         if (btnState == ButtonState.Idle) {
-          startLoading();
           if (_profileImage != null) {
+            startLoading();
             String? _imageURL =
                 await _cloudStorage.saveUserImageToStorage(uid, _profileImage!);
             await _db.updateUser(uid, email, _name!, _imageURL!);
@@ -202,8 +202,8 @@ class _ProfilePageState extends State<ProfilePage> {
       roundLoadingShape: true,
       onTap: (startLoading, stopLoading, btnState) async {
         if (btnState == ButtonState.Idle) {
-          startLoading();
           if (_registerFormKey.currentState!.validate()) {
+            startLoading();
             _registerFormKey.currentState!.save();
             await _db.updateUser(uid, email, _name!, profileImage);
             await _auth.logout();
