@@ -14,7 +14,6 @@ import '../services/cloud_storage_service.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
-import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
 import '../widgets/top_bar.dart';
 
@@ -134,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
         } else {
           return RoundedUserImageFile(
             key: UniqueKey(),
-            image: profileImage,
+            imagePath: profileImage,
             size: _deviceHeight * 0.15,
           );
         }
@@ -173,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
             startLoading();
             String? _imageURL =
                 await _cloudStorage.saveUserImageToStorage(uid, _profileImage!);
-            await _db.updateUser(uid, email, _name!, _imageURL!);
+            await _db.updateUser(uid, email, name, _imageURL!);
             await _auth.logout();
           }
         } else {

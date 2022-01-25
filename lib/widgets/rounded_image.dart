@@ -88,11 +88,11 @@ class RoundedInImageFile extends StatelessWidget {
 
 class RoundedUserImageFile extends StatelessWidget {
   final double size;
-  final String image;
+  final String imagePath;
 
   const RoundedUserImageFile({
     required Key key,
-    required this.image,
+    required this.imagePath,
     required this.size,
   }) : super(key: key);
 
@@ -104,7 +104,7 @@ class RoundedUserImageFile extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(image),
+          image: NetworkImage(imagePath),
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(size),
