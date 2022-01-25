@@ -1,4 +1,6 @@
 //Packages
+import 'dart:io';
+
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -103,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_profileImage != null) {
           return RoundedImageFile(
             key: UniqueKey(),
-            image: _profileImage!,
+            image: File(_profileImage!.path),
             size: _deviceHeight * 0.15,
           );
         } else {

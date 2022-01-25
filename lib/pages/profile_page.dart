@@ -1,4 +1,6 @@
 //Packages
+import 'dart:io';
+
 import 'package:Co.Chat/pages/users_page.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -127,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
         if (_profileImage != null) {
           return RoundedImageFile(
             key: UniqueKey(),
-            image: _profileImage!,
+            image: File(_profileImage!.path),
             size: _deviceHeight * 0.15,
           );
         } else {
