@@ -15,19 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
-  PageController pageController = PageController();
   final List<Widget> _pages = [
     UsersPage(),
     ChatsPage(),
     QrPage(),
   ];
-  void _onItemTapped(int index) {
-    pageController.jumpToPage(index);
-  }
-
-  void _onPageChanged(int index) {
-    setState(() => _currentPage = index);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,36 +28,36 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildUI() {
     return Scaffold(
+      body: _pages[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentPage,
-        onTap: _onItemTapped,
-        // ignore: prefer_const_literals_to_create_immutables
+        onTap: (_index) {
+          setState(
+            () {
+              _currentPage = _index;
+            },
+          );
+        },
         items: [
           const BottomNavigationBarItem(
             label: "Users",
             icon: Icon(
-              Icons.person,
+              Icons.supervisor_account_sharp,
             ),
           ),
           const BottomNavigationBarItem(
             label: "Chats",
             icon: Icon(
-              Icons.chat_bubble_rounded,
+              Icons.chat_bubble_sharp,
             ),
           ),
           const BottomNavigationBarItem(
             label: "QR Code",
             icon: Icon(
-              Icons.qr_code_rounded,
+              Icons.qr_code_sharp,
             ),
           ),
         ],
-      ),
-      body: PageView(
-        controller: pageController,
-        onPageChanged: _onPageChanged,
-        children: _pages,
-        physics: const NeverScrollableScrollPhysics(),
       ),
     );
   }
