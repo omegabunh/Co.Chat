@@ -47,7 +47,7 @@ class MainApp extends StatelessWidget {
           backgroundColor: const Color.fromRGBO(155, 217, 191, 1.0),
           scaffoldBackgroundColor: const Color.fromRGBO(155, 217, 191, 1.0),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: const Color.fromRGBO(79, 109, 98, 1.0),
+            backgroundColor: Color.fromRGBO(79, 109, 98, 1.0),
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,

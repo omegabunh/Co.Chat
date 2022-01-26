@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _registerForm() {
     return SizedBox(
-      height: _deviceHeight * 0.35,
+      height: _deviceHeight * 0.1,
       child: Form(
         key: _registerFormKey,
         child: CustomTextFormField(
@@ -198,8 +198,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _nameEditButton() {
     return ArgonButton(
-      height: _deviceHeight * 0.065,
-      width: _deviceWidth * 0.35,
+      height: _deviceHeight * 0.035,
+      width: _deviceWidth * 0.25,
       roundLoadingShape: true,
       onTap: (startLoading, stopLoading, btnState) async {
         if (btnState == ButtonState.Idle) {
