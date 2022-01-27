@@ -69,9 +69,9 @@ class _UsersPageState extends State<UsersPage> {
               TopBar(
                 "Users",
                 primaryAction: PopupMenuButton(
-                  icon: const Icon(
-                    Icons.more_vert,
-                    color: Color.fromRGBO(0, 82, 218, 1.0),
+                  icon: Icon(
+                    Icons.adaptive.more,
+                    color: const Color.fromRGBO(0, 82, 218, 1.0),
                   ),
                   itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                     PopupMenuItem(
@@ -154,9 +154,7 @@ class _UsersPageState extends State<UsersPage> {
         }
       } else {
         return const Center(
-          child: CircularProgressIndicator(
-            color: Colors.white,
-          ),
+          child: CircularProgressIndicator.adaptive(),
         );
       }
     }());

@@ -84,7 +84,7 @@ class ImageMessageBubble extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            child: Container(
+            child: SizedBox(
               height: height,
               width: width,
               child: Hero(

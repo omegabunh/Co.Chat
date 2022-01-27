@@ -95,9 +95,9 @@ class _ChatPageState extends State<ChatPage> {
                       },
                     ),
                     secondaryAction: IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: Color.fromRGBO(0, 82, 218, 1.0),
+                      icon: Icon(
+                        Icons.adaptive.arrow_back,
+                        color: const Color.fromRGBO(0, 82, 218, 1.0),
                       ),
                       onPressed: () {
                         _pageProvider.goBack();
@@ -150,9 +150,7 @@ class _ChatPageState extends State<ChatPage> {
       }
     } else {
       return const Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
-        ),
+        child: CircularProgressIndicator.adaptive(),
       );
     }
   }

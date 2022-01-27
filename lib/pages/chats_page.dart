@@ -109,9 +109,7 @@ class _ChatsPageState extends State<ChatsPage> {
           }
         } else {
           return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.white,
-            ),
+            child: CircularProgressIndicator.adaptive(),
           );
         }
       })(),

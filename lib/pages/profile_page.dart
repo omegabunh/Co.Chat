@@ -79,9 +79,9 @@ class _ProfilePageState extends State<ProfilePage> {
             TopBar(
               'Edit profile',
               primaryAction: IconButton(
-                icon: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color.fromRGBO(0, 82, 218, 1.0),
+                icon: Icon(
+                  Icons.adaptive.arrow_forward,
+                  color: const Color.fromRGBO(0, 82, 218, 1.0),
                 ),
                 onPressed: () {
                   Navigator.pop(
