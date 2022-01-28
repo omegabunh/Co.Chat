@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import './models/theme.dart';
 
 //Packages
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:provider/provider.dart';
 
 //Services
+import 'providers/theme_provider.dart';
 import 'services/navigation_service.dart';
 
 //Providers
@@ -22,7 +24,10 @@ void main() {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
+          //EasyDynamicThemeWidget(
+          //child:
           MainApp(),
+          //),
         );
       },
     ),
@@ -32,32 +37,34 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AuthenticationProvider>(
-          create: (BuildContext _context) {
-            return AuthenticationProvider();
-          },
-        )
-      ],
-      child: MaterialApp(
-        title: 'Co.Chat',
-        darkTheme: ThemeData.dark(),
-        theme: ThemeData(
-          backgroundColor: const Color.fromRGBO(155, 217, 191, 1.0),
-          scaffoldBackgroundColor: const Color.fromRGBO(155, 217, 191, 1.0),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Color.fromRGBO(79, 109, 98, 1.0),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeModel(),
+      child: Consumer<ThemeModel>(
+          builder: (context, ThemeModel themeNotifier, child) {
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider<AuthenticationProvider>(
+              create: (BuildContext _context) {
+                return AuthenticationProvider();
+              },
+            )
+          ],
+          child: MaterialApp(
+            title: 'Co.Chat',
+            //theme: lightThemeData,
+            //darkTheme: darkThemeData,
+            theme: themeNotifier.isDark ? darkThemeData : lightThemeData,
+            navigatorKey: NavigationService.navigatorKey,
+            initialRoute: '/login',
+            routes: {
+              '/login': (BuildContext _context) => LoginPage(),
+              '/register': (BuildContext _context) => RegisterPage(),
+              '/home': (BuildContext _context) => HomePage(),
+            },
+            debugShowCheckedModeBanner: false,
           ),
-        ),
-        navigatorKey: NavigationService.navigatorKey,
-        initialRoute: '/login',
-        routes: {
-          '/login': (BuildContext _context) => LoginPage(),
-          '/register': (BuildContext _context) => RegisterPage(),
-          '/home': (BuildContext _context) => HomePage(),
-        },
-      ),
+        );
+      }),
     );
   }
 }

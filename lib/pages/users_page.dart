@@ -1,5 +1,6 @@
 //Packages
 import 'package:Co.Chat/pages/profile_page.dart';
+import 'package:Co.Chat/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +30,7 @@ class _UsersPageState extends State<UsersPage> {
 
   late AuthenticationProvider _auth;
   late UsersPageProvider _pageProvider;
+  bool isDarkTheme = false;
 
   final TextEditingController _searchFieldTextEditingController =
       TextEditingController();
@@ -51,67 +53,97 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   Widget _buildUI() {
-    return Builder(
-      builder: (BuildContext _context) {
-        _pageProvider = _context.watch<UsersPageProvider>();
-        return Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: _deviceWidth * 0.03,
-            vertical: _deviceHeight * 0.02,
-          ),
-          height: _deviceHeight,
-          width: _deviceWidth,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TopBar(
-                "Users",
-                primaryAction: PopupMenuButton(
-                  icon: Icon(
-                    Icons.adaptive.more,
-                    color: const Color.fromRGBO(0, 82, 218, 1.0),
-                  ),
-                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                    PopupMenuItem(
-                      child: ListTile(
-                        title: const Text('로그아웃'),
-                        onTap: () {
-                          _auth.logout();
-                        },
+    return Consumer<ThemeModel>(
+      builder: (context, ThemeModel themeNotifier, child) {
+        return Builder(
+          builder: (BuildContext _context) {
+            _pageProvider = _context.watch<UsersPageProvider>();
+            return Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: _deviceWidth * 0.03,
+                vertical: _deviceHeight * 0.02,
+              ),
+              height: _deviceHeight,
+              width: _deviceWidth,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TopBar(
+                    "Users",
+                    primaryAction: PopupMenuButton(
+                      icon: Icon(
+                        Icons.adaptive.more,
+                        color: const Color.fromRGBO(0, 82, 218, 1.0),
                       ),
-                    ),
-                    PopupMenuItem(
-                      child: ListTile(
-                        title: const Text('프로필 수정'),
-                        onTap: () {
+                      onSelected: (result) {
+                        if (result == 0) {
+                          _auth.logout();
+                        } else if (result == 1) {
                           Navigator.push(
                             _context,
                             MaterialPageRoute(
                               builder: (_context) => ProfilePage(),
                             ),
                           );
-                        },
-                      ),
+                        } else if (result == 2) {}
+                      },
+                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                        const PopupMenuItem(
+                          child: Text('로그아웃'),
+                          value: 0,
+                        ),
+                        const PopupMenuItem(
+                          child: Text('프로필 수정'),
+                          value: 1,
+                        ),
+                        PopupMenuItem(
+                          child: ListTile(
+                            title: Text("테마 변경"),
+                            trailing: StatefulBuilder(
+                              builder:
+                                  (BuildContext context, StateSetter setState) {
+                                return Switch.adaptive(
+                                  value: isDarkTheme,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isDarkTheme =
+                                          themeNotifier.isDark = value;
+                                    });
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                          value: 2,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  CustomTextField(
+                    onEditingComplete: (_value) {
+                      _pageProvider.getUsers(name: _value);
+                      FocusScope.of(context).unfocus();
+                    },
+                    hintText: "검색...",
+                    obscureText: false,
+                    controller: _searchFieldTextEditingController,
+                    icon: Icons.search,
+                  ),
+                  SizedBox(height: _deviceHeight * 0.005),
+                  CustomProfileTile(
+                    height: _deviceHeight * 0.10,
+                    title: _auth.user.name,
+                    imagePath: _auth.user.imageURL,
+                    isActive: _auth.user.wasRecentlyActive(),
+                  ),
+                  _usersList(),
+                  _createChatButton(),
+                ],
               ),
-              CustomTextField(
-                onEditingComplete: (_value) {
-                  _pageProvider.getUsers(name: _value);
-                  FocusScope.of(context).unfocus();
-                },
-                hintText: "검색...",
-                obscureText: false,
-                controller: _searchFieldTextEditingController,
-                icon: Icons.search,
-              ),
-              _usersList(),
-              _createChatButton(),
-            ],
-          ),
+            );
+          },
         );
       },
     );
@@ -135,9 +167,11 @@ class _UsersPageState extends State<UsersPage> {
                   _users[_index],
                 ),
                 onTap: () {
-                  _pageProvider.updateSelectedUsers(
-                    _users[_index],
-                  );
+                  if (_users[_index].name != _auth.user.name) {
+                    _pageProvider.updateSelectedUsers(
+                      _users[_index],
+                    );
+                  }
                 },
               );
             },

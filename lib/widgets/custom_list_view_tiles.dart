@@ -195,3 +195,41 @@ class CustomChatListViewTile extends StatelessWidget {
     );
   }
 }
+
+class CustomProfileTile extends StatelessWidget {
+  final double height;
+  final String title;
+  final String imagePath;
+  final bool isActive;
+
+  CustomProfileTile(
+      {required this.height,
+      required this.title,
+      required this.imagePath,
+      required this.isActive});
+
+  @override
+  Widget build(BuildContext context) {
+    timeago.setLocaleMessages('ko', timeago.KoMessages());
+    return Column(
+      children: [
+        ListTile(
+          minVerticalPadding: height * 0.20,
+          leading: RoundedImageNetwork(
+            key: UniqueKey(),
+            size: height / 2,
+            imagePath: imagePath,
+          ),
+          title: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
