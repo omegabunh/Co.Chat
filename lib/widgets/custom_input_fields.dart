@@ -19,20 +19,20 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       onSaved: (_value) => onSaved(_value!),
       cursorColor: Colors.white,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       obscureText: obscureText,
       validator: (_value) {
         return RegExp(regEx).hasMatch(_value!) ? null : message;
       },
       decoration: InputDecoration(
-        fillColor: Color.fromRGBO(64, 127, 104, 1.0),
+        fillColor: const Color.fromRGBO(64, 127, 104, 1.0),
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none,
         ),
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white54),
+        hintStyle: const TextStyle(color: Colors.white54),
       ),
     );
   }
@@ -58,17 +58,17 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       onEditingComplete: () => onEditingComplete(controller.value.text),
       cursorColor: Colors.white,
-      style: TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white),
       obscureText: obscureText,
       decoration: InputDecoration(
-        fillColor: Color.fromRGBO(30, 29, 37, 0.1),
+        fillColor: const Color.fromRGBO(30, 29, 37, 0.1),
         filled: true,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none,
         ),
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.white54),
+        hintStyle: const TextStyle(color: Colors.white54),
         prefixIcon: Icon(icon, color: Colors.white54),
       ),
     );

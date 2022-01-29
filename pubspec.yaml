@@ -110,7 +110,9 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
+  remove_alpha_ios: true
   image_path: "assets/images/appLogo.png"
-
+  adaptive_icon_background: "#9bd9bf"
+  
 flutter_app_name:
   name: "Co.Chat"

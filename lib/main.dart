@@ -24,10 +24,7 @@ void main() {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
-          //EasyDynamicThemeWidget(
-          //child:
           MainApp(),
-          //),
         );
       },
     ),
@@ -51,8 +48,6 @@ class MainApp extends StatelessWidget {
           ],
           child: MaterialApp(
             title: 'Co.Chat',
-            //theme: lightThemeData,
-            //darkTheme: darkThemeData,
             theme: themeNotifier.isDark ? darkThemeData : lightThemeData,
             navigatorKey: NavigationService.navigatorKey,
             initialRoute: '/login',

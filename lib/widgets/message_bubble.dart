@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
-//Packages
-import 'package:timeago/timeago.dart' as timeago;
-
 //Models
 import '../models/chat_message.dart';
 

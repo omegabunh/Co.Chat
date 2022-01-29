@@ -7,7 +7,6 @@ import 'package:get_it/get_it.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
-import '../widgets/rounded_button.dart';
 
 //Providers
 import '../providers/authentication_provider.dart';
