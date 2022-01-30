@@ -13,6 +13,9 @@ import '../providers/authentication_provider.dart';
 //Widgets
 import '../widgets/top_bar.dart';
 
+//Pages
+import '../pages/qrscan_page.dart';
+
 class QrPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -65,14 +68,33 @@ class _QrPageState extends State<QrPage> {
             children: [
               TopBar(
                 'QR Code',
-                primaryAction: IconButton(
-                  icon: const Icon(
-                    Icons.logout,
-                    color: Color.fromRGBO(0, 82, 218, 1.0),
+                primaryAction: PopupMenuButton(
+                  icon: Icon(
+                    Icons.adaptive.more,
+                    color: const Color.fromRGBO(0, 82, 218, 1.0),
                   ),
-                  onPressed: () {
-                    _auth.logout();
+                  onSelected: (result) {
+                    if (result == 0) {
+                      _auth.logout();
+                    } else if (result == 1) {
+                      Navigator.push(
+                        _context,
+                        MaterialPageRoute(
+                          builder: (_context) => QRscanPage(),
+                        ),
+                      );
+                    } else if (result == 2) {}
                   },
+                  itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                    const PopupMenuItem(
+                      child: Text('로그아웃'),
+                      value: 0,
+                    ),
+                    const PopupMenuItem(
+                      child: Text('QRscan'),
+                      value: 1,
+                    ),
+                  ],
                 ),
               ),
               ProfileImage(),
@@ -136,7 +158,7 @@ class _QrPageState extends State<QrPage> {
     return Visibility(
       visible: _visibility,
       child: QrImage(
-        data: "$uid $now",
+        data: "$uid,$name,$now",
         version: QrVersions.auto,
         size: 200,
         backgroundColor: Colors.white,

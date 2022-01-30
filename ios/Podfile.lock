@@ -539,7 +539,11 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - "permission_handler (5.1.0+2)":
+    - Flutter
   - PromisesObjC (2.0.0)
+  - scan (0.0.1):
+    - Flutter
   - SDWebImage (5.12.1):
     - SDWebImage/Core (= 5.12.1)
   - SDWebImage/Core (5.12.1)
@@ -558,6 +562,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - scan (from `.symlinks/plugins/scan/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
 
 SPEC REPOS:
@@ -606,6 +612,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+  scan:
+    :path: ".symlinks/plugins/scan/ios"
   shared_preferences_ios:
     :path: ".symlinks/plugins/shared_preferences_ios/ios"
 
@@ -639,7 +649,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  scan: aea35bb4aa59ccc8839c576a18cd57c7d492cc86
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7

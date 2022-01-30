@@ -7,6 +7,7 @@ import '../models/chat_message.dart';
 const String USER_COLLECTION = "Users";
 const String CHAT_COLLECTION = "Chats";
 const String MESSAGES_COLLECTION = "messages";
+const String WORKRECORD_COLLECTION = "WorkRecords";
 
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -104,6 +105,24 @@ class DatabaseService {
           .add(
             _message.toJson(),
           );
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> addWorkRecord(
+    String _uid,
+    String _qrTime,
+    String _name,
+  ) async {
+    try {
+      await _db.collection(WORKRECORD_COLLECTION).doc(_uid).set(
+        {
+          "name": _name,
+          "time": DateTime.now().toUtc(),
+          "qrTime": _qrTime,
+        },
+      );
     } catch (e) {
       print(e);
     }
