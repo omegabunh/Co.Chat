@@ -35,7 +35,9 @@ class _QrPageState extends State<QrPage> {
   bool _visibility = true;
 
   //qr code time
-  String now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
+  String now = formatDate(DateTime.now(),
+      [yyyy, '년 ', mm, '월 ', dd, '일 ', am, ' ', hh, '시 ', nn, '분 ', ss, '초'],
+      locale: const KoreanDateLocale());
 
   int _endTime = DateTime.now().millisecondsSinceEpoch +
       const Duration(seconds: 15).inMilliseconds;
@@ -69,9 +71,9 @@ class _QrPageState extends State<QrPage> {
               TopBar(
                 'QR Code',
                 primaryAction: PopupMenuButton(
-                  icon: Icon(
-                    Icons.adaptive.more,
-                    color: const Color.fromRGBO(0, 82, 218, 1.0),
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
                   ),
                   onSelected: (result) {
                     if (result == 0) {
@@ -183,7 +185,25 @@ class _QrPageState extends State<QrPage> {
     setState(() {
       _endTime = DateTime.now().millisecondsSinceEpoch +
           const Duration(seconds: 15).inMilliseconds;
-      now = formatDate(DateTime.now(), [hh, ':', nn, ':', ss, ' ', am]);
+      now = formatDate(
+          DateTime.now(),
+          [
+            yyyy,
+            '년 ',
+            mm,
+            '월 ',
+            dd,
+            '일 ',
+            am,
+            ' ',
+            hh,
+            '시 ',
+            nn,
+            '분 ',
+            ss,
+            '초'
+          ],
+          locale: const KoreanDateLocale());
       _show();
     });
   }

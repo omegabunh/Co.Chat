@@ -116,7 +116,11 @@ class DatabaseService {
     String _name,
   ) async {
     try {
-      await _db.collection(WORKRECORD_COLLECTION).doc(_uid).set(
+      await _db
+          .collection(WORKRECORD_COLLECTION)
+          .doc(_uid)
+          .collection(_name)
+          .add(
         {
           "name": _name,
           "time": DateTime.now().toUtc(),

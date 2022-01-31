@@ -73,7 +73,7 @@ class _ChatsPageState extends State<ChatsPage> {
               primaryAction: IconButton(
                 icon: const Icon(
                   Icons.logout,
-                  color: Color.fromRGBO(0, 82, 218, 1.0),
+                  color: Colors.white,
                 ),
                 onPressed: () {
                   _auth.logout();

@@ -73,9 +73,9 @@ class _UsersPageState extends State<UsersPage> {
                   TopBar(
                     "Users",
                     primaryAction: PopupMenuButton(
-                      icon: Icon(
-                        Icons.adaptive.more,
-                        color: const Color.fromRGBO(0, 82, 218, 1.0),
+                      icon: const Icon(
+                        Icons.settings,
+                        color: Colors.white,
                       ),
                       onSelected: (result) {
                         if (result == 0) {
@@ -100,7 +100,7 @@ class _UsersPageState extends State<UsersPage> {
                         ),
                         PopupMenuItem(
                           child: ListTile(
-                            title: Text("테마 변경"),
+                            title: const Text("테마 변경"),
                             trailing: StatefulBuilder(
                               builder:
                                   (BuildContext context, StateSetter setState) {
