@@ -37,3 +37,6 @@
 - Firebase에서 iOS, Android 앱 등록 후 /android/app 폴더에 google-services.json 붙여넣기, /ios/Runner 폴더에 GoogleService-Info.plist 붙여넣기
 - Firebase console에서 Authentication, Firestore Database, Storage 사용 설정.
 - terminal에서 flutter run 실행 
+
+## Reference Repo
+[Chatify](https://github.com/preneure/chatify_flutter_firebase_chat_application)
