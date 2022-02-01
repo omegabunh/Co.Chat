@@ -39,4 +39,4 @@
 - terminal에서 flutter run 실행 
 
 ## Reference Repo
-[Chatify](https://github.com/preneure/chatify_flutter_firebase_chat_application)
+[Chatify Flutter Application](https://github.com/preneure/chatify_flutter_firebase_chat_application)
