@@ -73,7 +73,7 @@ class _QrPageState extends State<QrPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TopBar(
-                  "Users",
+                  "QR Code",
                   primaryAction: CupertinoButton(
                     onPressed: () {
                       showCupertinoModalPopup<void>(

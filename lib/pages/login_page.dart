@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _pageTitle() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.10,
       child: const Text(
         'Co.Chat',
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.18,
       child: Form(
         key: _loginFormKey,

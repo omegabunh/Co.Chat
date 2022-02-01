@@ -34,6 +34,7 @@ class Chat {
   String imageURL() {
     return !group
         ? _recepients.first.imageURL
-        : "https://e7.pngegg.com/pngimages/380/670/png-clipart-group-chat-logo-blue-area-text-symbol-metroui-apps-live-messenger-alt-2-blue-text.png";
+        : "https://drive.google.com/uc?id=1dF15oCV4MNv8lajUoFPVkJHARoQ4FYJx";
+    //<a href="https://www.flaticon.com/kr/free-icons/" title="모임 아이콘">모임 아이콘  제작자: Freepik - Flaticon</a>
   }
 }

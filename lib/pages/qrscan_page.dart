@@ -34,8 +34,6 @@ class QRscanPage extends StatelessWidget {
     _db = GetIt.instance.get<DatabaseService>();
     _cloudStorage = GetIt.instance.get<CloudStorageService>();
 
-    String qrcode = 'Unknown';
-
     return Scaffold(
       body: SafeArea(
         top: true,

@@ -102,7 +102,7 @@ class _ChatsPageState extends State<ChatsPage> {
           } else {
             return const Center(
               child: Text(
-                "채팅을 찾을수 없음.",
+                "채팅을 찾을 수 없음.",
                 style: TextStyle(color: Colors.white),
               ),
             );
