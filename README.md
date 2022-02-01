@@ -38,5 +38,5 @@
 - Firebase console에서 Authentication, Firestore Database, Storage 사용 설정.
 - terminal에서 flutter run 실행 
 
-## Reference Repo
+## Reference
 [Chatify Flutter Application](https://github.com/preneure/chatify_flutter_firebase_chat_application)
