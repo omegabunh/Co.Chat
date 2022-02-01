@@ -2,6 +2,7 @@
 |SDK|Database|IDE|Languages|
 |:---:|:---:|:---:|:---:|
 |![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)|![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)|![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)|![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)|
+
 ## 개요
 - [Flutter](https://flutter.dev/), [Firebase](https://firebase.google.com/)를 이용한 채팅, QR Code 출퇴근 관리 App.
 - 이용자 간의 1대1, 그룹채팅 기능, QR Code 생성 후 QR Scan을 통해 Database에 시간을 기록하여 출퇴근 시간 기록.
@@ -15,13 +16,17 @@
 - VS Code 1.63.2
 
 ## Pages
-|Login|Register|Users|
-|:---:|:---:|:---:|
+|Login|Register|
+|:---:|:---:|
 |<img src="https://user-images.githubusercontent.com/55680319/151937895-f08a302b-fa97-48d9-bbdf-3b14be64a9ac.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151937880-0515386a-b337-4b4d-ba42-c817357b04a7.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151937860-c67c1864-c3f9-4f68-8ffd-1a008da402c7.png" width="270" height="570">|
 
-|Profile Edit|Chat List|Chat|
-|:---:|:---:|:---:|
-|<img src="https://user-images.githubusercontent.com/55680319/151939575-ced8542e-8c70-410e-b0ca-ad4af773ab88.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151939565-069828d3-20be-479f-82c3-e92401b6f311.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151937882-7f0ee709-1f98-4a17-bbca-bc8b1805c5a5.png" width="270" height="570">|
+|Users|Profile Edit|
+|:---:|:---:|
+|<img src="https://user-images.githubusercontent.com/55680319/151937860-c67c1864-c3f9-4f68-8ffd-1a008da402c7.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151939575-ced8542e-8c70-410e-b0ca-ad4af773ab88.png" width="270" height="570">|
+
+|Chat List|Chat|
+|:---:|:---:|
+|<img src="https://user-images.githubusercontent.com/55680319/151939565-069828d3-20be-479f-82c3-e92401b6f311.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151937882-7f0ee709-1f98-4a17-bbca-bc8b1805c5a5.png" width="270" height="570">|
 
 |QR Code|QR Scanner|
 |:---:|:---:|
