@@ -1,6 +1,9 @@
 //Packages
+import 'dart:io';
+
 import 'package:Co.Chat/pages/profile_page.dart';
 import 'package:Co.Chat/providers/theme_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -58,6 +61,116 @@ class _UsersPageState extends State<UsersPage> {
         return Builder(
           builder: (BuildContext _context) {
             _pageProvider = _context.watch<UsersPageProvider>();
+            if (Platform.isIOS) {
+              return Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: _deviceWidth * 0.03,
+                  vertical: _deviceHeight * 0.02,
+                ),
+                height: _deviceHeight,
+                width: _deviceWidth,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    TopBar(
+                      "Users",
+                      primaryAction: CupertinoButton(
+                        onPressed: () {
+                          showCupertinoModalPopup<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Material(
+                                color: Colors.transparent,
+                                child: CupertinoActionSheet(
+                                  actions: <Widget>[
+                                    CupertinoActionSheetAction(
+                                      child: const Text('로그아웃'),
+                                      onPressed: () {
+                                        _auth.logout();
+                                      },
+                                    ),
+                                    CupertinoActionSheetAction(
+                                      child: const Text('프로필 수정'),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          _context,
+                                          MaterialPageRoute(
+                                            builder: (_context) =>
+                                                ProfilePage(),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                  message: Wrap(
+                                    children: <Widget>[
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          const Text(
+                                            '테마 변경',
+                                            style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          CupertinoSwitch(
+                                            value: isDarkTheme,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                isDarkTheme = themeNotifier
+                                                    .isDark = value;
+                                              });
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  cancelButton: CupertinoActionSheetAction(
+                                    isDefaultAction: true,
+                                    child: const Text('닫기'),
+                                    onPressed: () {
+                                      Navigator.pop(context, 1);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        child: const Icon(
+                          Icons.settings,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    CustomTextField(
+                      onEditingComplete: (_value) {
+                        _pageProvider.getUsers(name: _value);
+                        FocusScope.of(context).unfocus();
+                      },
+                      hintText: "검색...",
+                      obscureText: false,
+                      controller: _searchFieldTextEditingController,
+                      icon: Icons.search,
+                    ),
+                    SizedBox(height: _deviceHeight * 0.005),
+                    CustomProfileTile(
+                      height: _deviceHeight * 0.10,
+                      title: _auth.user.name,
+                      imagePath: _auth.user.imageURL,
+                      isActive: _auth.user.wasRecentlyActive(),
+                    ),
+                    _usersList(),
+                    _createChatButton(),
+                  ],
+                ),
+              );
+            }
             return Container(
               padding: EdgeInsets.symmetric(
                 horizontal: _deviceWidth * 0.03,

@@ -1,4 +1,7 @@
 //Packages
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -56,6 +59,102 @@ class _QrPageState extends State<QrPage> {
     profileImage = _auth.user.imageURL;
     return Builder(
       builder: (BuildContext _context) {
+        if (Platform.isIOS) {
+          return Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: _deviceWidth * 0.03,
+              vertical: _deviceHeight * 0.02,
+            ),
+            height: _deviceHeight,
+            width: _deviceWidth,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TopBar(
+                  "Users",
+                  primaryAction: CupertinoButton(
+                    onPressed: () {
+                      showCupertinoModalPopup<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Material(
+                            color: Colors.transparent,
+                            child: CupertinoActionSheet(
+                              actions: <Widget>[
+                                CupertinoActionSheetAction(
+                                  child: const Text('로그아웃'),
+                                  onPressed: () {
+                                    _auth.logout();
+                                  },
+                                ),
+                                CupertinoActionSheetAction(
+                                  child: const Text('QR Scanner'),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      _context,
+                                      MaterialPageRoute(
+                                        builder: (_context) => QRscanPage(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                isDefaultAction: true,
+                                child: const Text('닫기'),
+                                onPressed: () {
+                                  Navigator.pop(context, 1);
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                ProfileImage(),
+                Text(
+                  name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                QrCodeImage(),
+                const SizedBox(height: 40),
+                CountdownTimer(
+                  endTime: _endTime,
+                  widgetBuilder: (_, CurrentRemainingTime? time) {
+                    if (time == null) {
+                      return QrRefreshButton();
+                    }
+                    return SizedBox(
+                      child: Text(
+                        '${time.sec}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    );
+                  },
+                  onEnd: _hide,
+                ),
+                const SizedBox(height: 40),
+              ],
+            ),
+          );
+        }
         return Container(
           padding: EdgeInsets.symmetric(
             horizontal: _deviceWidth * 0.03,
