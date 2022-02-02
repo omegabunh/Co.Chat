@@ -12,7 +12,7 @@
 ## Environment
 - Flutter 2.8.1
 - Dart 2.15.1
-- macOS 12.2
+- macOS 12.2 & winodws10 pro
 - VS Code 1.63.2
 
 ## Pages
