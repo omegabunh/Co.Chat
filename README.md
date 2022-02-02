@@ -37,6 +37,9 @@
 |:---:|:---:|
 |<img src="https://user-images.githubusercontent.com/55680319/151937892-ff1ac19e-9dab-43c8-bf15-0c88970e1ef7.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/151937890-0bdd6191-ab50-4274-96a8-233eaf68b6ae.png" width="270" height="570">|
 
+## QR Scan -> Save Firestore
+![제목 없음](https://user-images.githubusercontent.com/55680319/152102538-a029f1a4-cd4c-4370-8d49-cbef47536dea.png)
+
 ## Usage
 - git clone
 - Firebase에서 iOS, Android 앱 등록 
