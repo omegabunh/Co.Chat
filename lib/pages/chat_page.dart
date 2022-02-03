@@ -1,4 +1,5 @@
 //Packages
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -118,25 +119,31 @@ class _ChatPageState extends State<ChatPage> {
   Widget _messagesListView() {
     if (_pageProvider.messages != null) {
       if (_pageProvider.messages!.length != 0) {
-        return Container(
-          height: _deviceHeight * 0.74,
-          child: ListView.builder(
-            shrinkWrap: true,
-            controller: _messagesListViewController,
-            itemCount: _pageProvider.messages!.length,
-            itemBuilder: (BuildContext _context, int _index) {
-              ChatMessage _message = _pageProvider.messages![_index];
-              bool _isOwnMessage = _message.senderID == _auth.user.uid;
-              return CustomChatListViewTile(
-                deviceHeight: _deviceHeight,
-                width: _deviceWidth * 0.80,
-                message: _message,
-                isOwnMessage: _isOwnMessage,
-                sender: widget.chat.members
-                    .where((_m) => _m.uid == _message.senderID)
-                    .first,
-              );
-            },
+        return CupertinoScrollbar(
+          thickness: 6.0,
+          thicknessWhileDragging: 10.0,
+          radius: const Radius.circular(34.0),
+          radiusWhileDragging: Radius.zero,
+          child: SizedBox(
+            height: _deviceHeight * 0.74,
+            child: ListView.builder(
+              shrinkWrap: true,
+              controller: _messagesListViewController,
+              itemCount: _pageProvider.messages!.length,
+              itemBuilder: (BuildContext _context, int _index) {
+                ChatMessage _message = _pageProvider.messages![_index];
+                bool _isOwnMessage = _message.senderID == _auth.user.uid;
+                return CustomChatListViewTile(
+                  deviceHeight: _deviceHeight,
+                  width: _deviceWidth * 0.80,
+                  message: _message,
+                  isOwnMessage: _isOwnMessage,
+                  sender: widget.chat.members
+                      .where((_m) => _m.uid == _message.senderID)
+                      .first,
+                );
+              },
+            ),
           ),
         );
       } else {

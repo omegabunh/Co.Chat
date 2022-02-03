@@ -152,10 +152,18 @@ class CustomChatListViewTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           !isOwnMessage
-              ? RoundedImageNetwork(
-                  key: UniqueKey(),
-                  imagePath: sender.imageURL,
-                  size: width * 0.13)
+              ? Column(
+                  children: [
+                    RoundedImageNetwork(
+                        key: UniqueKey(),
+                        imagePath: sender.imageURL,
+                        size: width * 0.13),
+                    Text(
+                      sender.name,
+                      style: const TextStyle(color: Colors.white, fontSize: 10),
+                    )
+                  ],
+                )
               : Container(),
           !isOwnMessage
               ? Container()

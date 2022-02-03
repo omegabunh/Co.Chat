@@ -21,7 +21,17 @@ class TextMessageBubble extends StatelessWidget {
     return Flexible(
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: isOwnMessage
+              ? const BorderRadius.only(
+                  topLeft: Radius.circular(12.0),
+                  bottomLeft: Radius.circular(12.0),
+                  bottomRight: Radius.circular(12.0),
+                )
+              : const BorderRadius.only(
+                  topRight: Radius.circular(12.0),
+                  bottomLeft: Radius.circular(12.0),
+                  bottomRight: Radius.circular(12.0),
+                ),
           color: isOwnMessage
               ? const Color.fromRGBO(204, 255, 204, 1.0)
               : const Color.fromRGBO(153, 255, 153, 1.0),

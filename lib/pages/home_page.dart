@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _pages[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: const Color.fromRGBO(155, 217, 191, 1.0),
         currentIndex: _currentPage,
         onTap: (_index) {
           setState(
