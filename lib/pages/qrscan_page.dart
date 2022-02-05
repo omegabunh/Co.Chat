@@ -52,9 +52,12 @@ class QRscanPage extends StatelessWidget {
                 await _db.addWorkRecord(uid, qrTime, name);
                 final player = AudioCache();
                 player.play('voice.mp3');
-                Future.delayed(const Duration(milliseconds: 3000), () {
-                  controller.resume();
-                });
+                Future.delayed(
+                  const Duration(milliseconds: 3000),
+                  () {
+                    controller.resume();
+                  },
+                );
                 Fluttertoast.showToast(
                   msg: "uid: $uid\nname: $name\nqrTime: $qrTime",
                   toastLength: Toast.LENGTH_SHORT,

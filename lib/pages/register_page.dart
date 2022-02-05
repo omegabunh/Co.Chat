@@ -137,6 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: "Name",
               obscureText: false,
               message: '2~6자 이내의 이름을 입력해주십시요.',
+              type: TextInputType.text,
             ),
             CustomTextFormField(
               onSaved: (_value) {
@@ -149,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: "Email",
               obscureText: false,
               message: '이메일 항목을 입력해주십시요.',
+              type: TextInputType.emailAddress,
             ),
             CustomTextFormField(
               onSaved: (_value) {
@@ -160,6 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: "Password",
               obscureText: true,
               message: '비밀번호 8자리 이상 입력해주십시요.',
+              type: TextInputType.visiblePassword,
             ),
             CustomTextFormField(
               onSaved: (_value) {
@@ -171,6 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: "CompanyCode",
               obscureText: false,
               message: '6자리의 회사코드를 입력해주십시요.',
+              type: TextInputType.text,
             ),
           ],
         ),

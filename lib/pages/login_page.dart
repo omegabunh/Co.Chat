@@ -111,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Email',
               obscureText: false,
               message: '이메일 항목을 입력해주십시요.',
+              type: TextInputType.emailAddress,
             ),
             CustomTextFormField(
               onSaved: (_value) {
@@ -122,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Password',
               obscureText: true,
               message: '비밀번호 8자리 이상 입력해주십시요.',
+              type: TextInputType.visiblePassword,
             ),
           ],
         ),

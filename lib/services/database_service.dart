@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //Models
 import '../models/chat_message.dart';
+import '../models/todo.dart';
 
 const String USER_COLLECTION = "Users";
 const String CHAT_COLLECTION = "Chats";
 const String MESSAGES_COLLECTION = "messages";
 const String WORKRECORD_COLLECTION = "WorkRecords";
+const String TODO_COLLECTION = "Todos";
 
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -157,6 +159,51 @@ class DatabaseService {
       DocumentReference _chat =
           await _db.collection(CHAT_COLLECTION).add(_data);
       return _chat;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> addToDo(String _uid, String _name, Todo data) async {
+    try {
+      await _db.collection(TODO_COLLECTION).doc(_uid).collection(_name).add(
+        {
+          "ToDo": data.text,
+          "isDone": data.isDone,
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> deleteToDo(
+      String _uid, String _name, DocumentSnapshot doc) async {
+    try {
+      await _db
+          .collection(TODO_COLLECTION)
+          .doc(_uid)
+          .collection(_name)
+          .doc(doc.id)
+          .delete();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> checkToDo(
+      String _uid, String _name, DocumentSnapshot doc) async {
+    try {
+      await _db
+          .collection(TODO_COLLECTION)
+          .doc(_uid)
+          .collection(_name)
+          .doc(doc.id)
+          .update(
+        {
+          "isDone": !doc["isDone"],
+        },
+      );
     } catch (e) {
       print(e);
     }

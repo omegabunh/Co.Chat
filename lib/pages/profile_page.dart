@@ -158,6 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
           hintText: name,
           obscureText: false,
           message: '2~6자 이내의 이름을 입력해주십시요.',
+          type: TextInputType.text,
         ),
       ),
     );
