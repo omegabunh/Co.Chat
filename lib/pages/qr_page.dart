@@ -281,41 +281,34 @@ class _QrPageState extends State<QrPage> {
   }
 
   void updateUI() {
-    setState(() {
-      _endTime = DateTime.now().millisecondsSinceEpoch +
-          const Duration(seconds: 15).inMilliseconds;
-      now = formatDate(
-          DateTime.now(),
-          [
-            yyyy,
-            '년 ',
-            mm,
-            '월 ',
-            dd,
-            '일 ',
-            am,
-            ' ',
-            hh,
-            '시 ',
-            nn,
-            '분 ',
-            ss,
-            '초'
-          ],
-          locale: const KoreanDateLocale());
-      _show();
-    });
+    _endTime = DateTime.now().millisecondsSinceEpoch +
+        const Duration(seconds: 15).inMilliseconds;
+
+    now = formatDate(DateTime.now(),
+        [yyyy, '년 ', mm, '월 ', dd, '일 ', am, ' ', hh, '시 ', nn, '분 ', ss, '초'],
+        locale: const KoreanDateLocale());
+
+    _show();
   }
 
   void _show() {
-    setState(() {
-      _visibility = true;
-    });
+    if (mounted) {
+      setState(() {
+        _visibility = true;
+      });
+    }
   }
 
   void _hide() {
-    setState(() {
-      _visibility = false;
-    });
+    if (mounted) {
+      setState(() {
+        _visibility = false;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

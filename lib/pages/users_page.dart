@@ -118,11 +118,10 @@ class _UsersPageState extends State<UsersPage> {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           CupertinoSwitch(
-                                            value: isDarkTheme,
+                                            value: themeNotifier.isDark,
                                             onChanged: (value) {
                                               setState(() {
-                                                isDarkTheme = themeNotifier
-                                                    .isDark = value;
+                                                themeNotifier.isDark = value;
                                               });
                                             },
                                           ),
@@ -165,6 +164,7 @@ class _UsersPageState extends State<UsersPage> {
                       imagePath: _auth.user.imageURL,
                       isActive: _auth.user.wasRecentlyActive(),
                     ),
+                    SizedBox(height: _deviceHeight * 0.005),
                     _usersList(),
                     _createChatButton(),
                   ],
@@ -218,11 +218,10 @@ class _UsersPageState extends State<UsersPage> {
                               builder:
                                   (BuildContext context, StateSetter setState) {
                                 return Switch.adaptive(
-                                  value: isDarkTheme,
+                                  value: themeNotifier.isDark,
                                   onChanged: (value) {
                                     setState(() {
-                                      isDarkTheme =
-                                          themeNotifier.isDark = value;
+                                      themeNotifier.isDark = value;
                                     });
                                   },
                                 );
@@ -251,6 +250,7 @@ class _UsersPageState extends State<UsersPage> {
                     imagePath: _auth.user.imageURL,
                     isActive: _auth.user.wasRecentlyActive(),
                   ),
+                  SizedBox(height: _deviceHeight * 0.005),
                   _usersList(),
                   _createChatButton(),
                 ],
@@ -266,27 +266,29 @@ class _UsersPageState extends State<UsersPage> {
     List<ChatUser>? _users = _pageProvider.users;
     return Expanded(child: () {
       if (_users != null) {
-        if (_users.length != 0) {
+        if (_users.isNotEmpty) {
           return ListView.builder(
             itemCount: _users.length,
             itemBuilder: (BuildContext _context, int _index) {
-              return CustomListViewTile(
-                height: _deviceHeight * 0.10,
-                title: _users[_index].name,
-                subtitle: "Last Active: ${_users[_index].lastDayActive()}",
-                imagePath: _users[_index].imageURL,
-                isActive: _users[_index].wasRecentlyActive(),
-                isSelected: _pageProvider.selectedUsers.contains(
-                  _users[_index],
-                ),
-                onTap: () {
-                  if (_users[_index].name != _auth.user.name) {
+              if (_users[_index].name != _auth.user.name) {
+                return CustomListViewTile(
+                  height: _deviceHeight * 0.10,
+                  title: _users[_index].name,
+                  subtitle: "최근 활동: ${_users[_index].lastDayActive()}",
+                  imagePath: _users[_index].imageURL,
+                  isActive: _users[_index].wasRecentlyActive(),
+                  isSelected: _pageProvider.selectedUsers.contains(
+                    _users[_index],
+                  ),
+                  onTap: () {
                     _pageProvider.updateSelectedUsers(
                       _users[_index],
                     );
-                  }
-                },
-              );
+                  },
+                );
+              } else {
+                return Container();
+              }
             },
           );
         } else {
@@ -311,7 +313,7 @@ class _UsersPageState extends State<UsersPage> {
     return Visibility(
       visible: _pageProvider.selectedUsers.isNotEmpty,
       child: RoundedButton(
-        name: _pageProvider.selectedUsers.length == 1 ? "1:1 채팅" : "그룹채팅",
+        name: _pageProvider.selectedUsers.length == 1 ? "1:1 채팅" : "그룹 채팅",
         height: _deviceHeight * 0.08,
         width: _deviceWidth * 0.80,
         onPressed: () {

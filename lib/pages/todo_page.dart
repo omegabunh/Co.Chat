@@ -48,120 +48,8 @@ class _ToDoPageState extends State<ToDoPage> {
     name = _auth.user.name;
 
     if (Platform.isIOS) {
-      return Form(
-        key: _loginFormKey,
-        child: CupertinoPageScaffold(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: _deviceWidth * 0.03,
-              vertical: _deviceHeight * 0.02,
-            ),
-            height: _deviceHeight,
-            width: _deviceWidth,
-            child: Column(
-              children: [
-                TopBar(
-                  'ToDo',
-                  primaryAction: IconButton(
-                    icon: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      _auth.logout();
-                    },
-                  ),
-                ),
-                StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection("Todos")
-                      .doc(uid)
-                      .collection(name)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const CircularProgressIndicator.adaptive();
-                    }
-                    final documents = snapshot.data!.docs;
-                    return Expanded(
-                      child: CupertinoScrollbar(
-                        thickness: 6.0,
-                        thicknessWhileDragging: 10.0,
-                        radius: const Radius.circular(34.0),
-                        radiusWhileDragging: Radius.zero,
-                        child: ListView(
-                          children: documents
-                              .map((doc) => _toDoListView(doc))
-                              .toList(),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                Container(
-                  alignment: const Alignment(0.95, 0.0),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      showCupertinoDialog(
-                        context: context,
-                        builder: (BuildContext context) => CupertinoAlertDialog(
-                          title: const Text('ToDo 추가'),
-                          content: Card(
-                            color: Colors.transparent,
-                            elevation: 0.0,
-                            child: Column(
-                              children: [
-                                TextField(
-                                  onChanged: (String value) {
-                                    _text = value;
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          actions: <CupertinoDialogAction>[
-                            CupertinoDialogAction(
-                              child: const Text('닫기'),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            CupertinoDialogAction(
-                              child: const Text('추가'),
-                              onPressed: () {
-                                setState(
-                                  () {
-                                    _db.addToDo(
-                                      uid,
-                                      name,
-                                      Todo(_text!),
-                                    );
-                                  },
-                                );
-                                Navigator.of(context).pop();
-                              },
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Form(
-      key: _loginFormKey,
-      child: Scaffold(
-        body: Container(
+      return CupertinoPageScaffold(
+        child: Container(
           padding: EdgeInsets.symmetric(
             horizontal: _deviceWidth * 0.03,
             vertical: _deviceHeight * 0.02,
@@ -194,53 +82,160 @@ class _ToDoPageState extends State<ToDoPage> {
                   }
                   final documents = snapshot.data!.docs;
                   return Expanded(
-                    child: ListView(
-                      children:
-                          documents.map((doc) => _toDoListView(doc)).toList(),
+                    child: CupertinoScrollbar(
+                      thickness: 6.0,
+                      thicknessWhileDragging: 10.0,
+                      radius: const Radius.circular(34.0),
+                      radiusWhileDragging: Radius.zero,
+                      child: ListView(
+                        children:
+                            documents.map((doc) => _toDoListView(doc)).toList(),
+                      ),
                     ),
                   );
                 },
               ),
+              Container(
+                alignment: const Alignment(0.95, 0.0),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: const Text('ToDo 추가'),
+                        content: Card(
+                          color: Colors.transparent,
+                          elevation: 0.0,
+                          child: Column(
+                            children: [
+                              CupertinoTextField(
+                                onChanged: (String value) {
+                                  _text = value;
+                                },
+                                style: const TextStyle(
+                                    color: CupertinoColors.label),
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: const Text('취소'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: const Text('저장'),
+                            onPressed: () {
+                              setState(
+                                () {
+                                  _db.addToDo(
+                                    uid,
+                                    name,
+                                    Todo(_text!),
+                                  );
+                                },
+                              );
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text("ToDo 추가"),
-                  content: TextField(
-                    onChanged: (String value) {
-                      _text = value;
-                    },
+      );
+    }
+
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: _deviceWidth * 0.03,
+          vertical: _deviceHeight * 0.02,
+        ),
+        height: _deviceHeight,
+        width: _deviceWidth,
+        child: Column(
+          children: [
+            TopBar(
+              'ToDo',
+              primaryAction: IconButton(
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  _auth.logout();
+                },
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("Todos")
+                  .doc(uid)
+                  .collection(name)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const CircularProgressIndicator.adaptive();
+                }
+                final documents = snapshot.data!.docs;
+                return Expanded(
+                  child: ListView(
+                    children:
+                        documents.map((doc) => _toDoListView(doc)).toList(),
                   ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        setState(
-                          () {
-                            _db.addToDo(
-                              uid,
-                              name,
-                              Todo(_text!),
-                            );
-                          },
-                        );
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("추가"),
-                    )
-                  ],
                 );
               },
-            );
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("ToDo 추가"),
+                content: TextField(
+                  onChanged: (String value) {
+                    _text = value;
+                  },
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      setState(
+                        () {
+                          _db.addToDo(
+                            uid,
+                            name,
+                            Todo(_text!),
+                          );
+                        },
+                      );
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("저장"),
+                  )
+                ],
+              );
+            },
+          );
+        },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );
