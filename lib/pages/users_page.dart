@@ -105,17 +105,20 @@ class _UsersPageState extends State<UsersPage> {
                                     ),
                                   ],
                                   message: Wrap(
-                                    children: <Widget>[
+                                    children: [
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
+                                            MainAxisAlignment.end,
+                                        children: [
                                           const Text(
                                             '테마 변경',
                                             style: TextStyle(
                                                 color: Colors.blue,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w400),
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(right: 52),
                                           ),
                                           CupertinoSwitch(
                                             value: themeNotifier.isDark,
@@ -147,15 +150,15 @@ class _UsersPageState extends State<UsersPage> {
                         ),
                       ),
                     ),
-                    CustomTextField(
-                      onEditingComplete: (_value) {
+                    CupertinoSearchTextField(
+                      placeholder: '검색...',
+                      onSubmitted: (_value) {
                         _pageProvider.getUsers(name: _value);
                         FocusScope.of(context).unfocus();
                       },
-                      hintText: "검색...",
-                      obscureText: false,
                       controller: _searchFieldTextEditingController,
-                      icon: Icons.search,
+                      style: const TextStyle(color: Colors.white),
+                      autocorrect: false,
                     ),
                     SizedBox(height: _deviceHeight * 0.005),
                     CustomProfileTile(

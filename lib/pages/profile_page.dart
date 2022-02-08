@@ -104,8 +104,13 @@ class _ProfilePageState extends State<ProfilePage> {
             SizedBox(
               height: _deviceHeight * 0.05,
             ),
-            _registerForm(),
-            _nameEditButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _registerForm(),
+                _nameEditButton(),
+              ],
+            )
           ],
         ),
       ),
@@ -145,7 +150,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _registerForm() {
     return SizedBox(
-      height: _deviceHeight * 0.1,
+      height: _deviceHeight * 0.06,
+      width: _deviceHeight * 0.35,
       child: Form(
         key: _registerFormKey,
         child: CustomTextFormField(
@@ -199,8 +205,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _nameEditButton() {
     return ArgonButton(
-      height: _deviceHeight * 0.035,
-      width: _deviceWidth * 0.25,
+      height: 50,
+      width: 50,
       roundLoadingShape: true,
       onTap: (startLoading, stopLoading, btnState) async {
         if (btnState == ButtonState.Idle) {
@@ -214,10 +220,9 @@ class _ProfilePageState extends State<ProfilePage> {
           stopLoading();
         }
       },
-      child: const Text(
-        "이름 변경",
-        style: TextStyle(
-            color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
+      child: const Icon(
+        Icons.edit_rounded,
+        color: Colors.white,
       ),
       loader: Container(
         padding: const EdgeInsets.all(10),
@@ -225,7 +230,7 @@ class _ProfilePageState extends State<ProfilePage> {
           color: Colors.white,
         ),
       ),
-      borderRadius: 5.0,
+      borderRadius: 100,
       color: const Color.fromRGBO(64, 200, 104, 1.0),
     );
   }
