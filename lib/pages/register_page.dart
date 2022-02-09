@@ -55,35 +55,33 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _buildUI() {
-    return SingleChildScrollView(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: _deviceWidth * 0.03,
-            vertical: _deviceHeight * 0.02,
-          ),
-          height: _deviceHeight,
-          width: _deviceWidth,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _profileImageField(),
-              SizedBox(
-                height: _deviceHeight * 0.05,
-              ),
-              _registerForm(),
-              SizedBox(
-                height: _deviceHeight * 0.1,
-              ),
-              _registerButton(),
-              SizedBox(
-                height: _deviceHeight * 0.01,
-              ),
-            ],
-          ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: _deviceWidth * 0.03,
+          vertical: _deviceHeight * 0.02,
+        ),
+        height: _deviceHeight,
+        width: _deviceWidth,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _profileImageField(),
+            SizedBox(
+              height: _deviceHeight * 0.05,
+            ),
+            _registerForm(),
+            SizedBox(
+              height: _deviceHeight * 0.1,
+            ),
+            _registerButton(),
+            SizedBox(
+              height: _deviceHeight * 0.01,
+            ),
+          ],
         ),
       ),
     );
