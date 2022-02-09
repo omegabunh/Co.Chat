@@ -74,7 +74,7 @@ class _ToDoPageState extends State<ToDoPage> {
                 stream: FirebaseFirestore.instance
                     .collection("Todos")
                     .doc(uid)
-                    .collection(name)
+                    .collection("todo")
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -182,7 +182,7 @@ class _ToDoPageState extends State<ToDoPage> {
               stream: FirebaseFirestore.instance
                   .collection("Todos")
                   .doc(uid)
-                  .collection(name)
+                  .collection("todo")
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {

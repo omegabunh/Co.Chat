@@ -121,7 +121,7 @@ class DatabaseService {
       await _db
           .collection(WORKRECORD_COLLECTION)
           .doc(_uid)
-          .collection(_name)
+          .collection("commuteTime")
           .add(
         {
           "name": _name,
@@ -166,8 +166,9 @@ class DatabaseService {
 
   Future<void> addToDo(String _uid, String _name, Todo data) async {
     try {
-      await _db.collection(TODO_COLLECTION).doc(_uid).collection(_name).add(
+      await _db.collection(TODO_COLLECTION).doc(_uid).collection('todo').add(
         {
+          "name": _name,
           "ToDo": data.text,
           "isDone": data.isDone,
         },
@@ -183,7 +184,7 @@ class DatabaseService {
       await _db
           .collection(TODO_COLLECTION)
           .doc(_uid)
-          .collection(_name)
+          .collection('todo')
           .doc(doc.id)
           .delete();
     } catch (e) {
@@ -197,7 +198,7 @@ class DatabaseService {
       await _db
           .collection(TODO_COLLECTION)
           .doc(_uid)
-          .collection(_name)
+          .collection('todo')
           .doc(doc.id)
           .update(
         {

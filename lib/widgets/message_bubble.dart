@@ -4,6 +4,9 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 //Models
 import '../models/chat_message.dart';
 
+//Widgets
+import '../widgets/custom_selectabletext.dart';
+
 class TextMessageBubble extends StatelessWidget {
   final bool isOwnMessage;
   final ChatMessage message;
@@ -49,6 +52,8 @@ class TextMessageBubble extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.black,
                 ),
+                //selectionControls: MyMaterialTextSelectionControls(),
+                selectionControls: MyMaterialTextSelectionControls(),
               ),
             ],
           ),
