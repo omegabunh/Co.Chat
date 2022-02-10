@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
@@ -6,6 +8,7 @@ import '../models/chat_message.dart';
 
 //Widgets
 import '../widgets/custom_selectabletext.dart';
+import '../widgets/ios_custom_selectabletext.dart';
 
 class TextMessageBubble extends StatelessWidget {
   final bool isOwnMessage;
@@ -47,19 +50,32 @@ class TextMessageBubble extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SelectableText(
-                message.content,
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
-                //selectionControls: MyMaterialTextSelectionControls(),
-                selectionControls: MyMaterialTextSelectionControls(),
-              ),
+              _platformText(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _platformText() {
+    if (Platform.isIOS) {
+      return SelectableText(
+        message.content,
+        style: const TextStyle(
+          color: Colors.black,
+        ),
+        selectionControls: MyCupertinoTextSelectionControls(),
+      );
+    } else {
+      return SelectableText(
+        message.content,
+        style: const TextStyle(
+          color: Colors.black,
+        ),
+        selectionControls: MyMaterialTextSelectionControls(),
+      );
+    }
   }
 }
 
