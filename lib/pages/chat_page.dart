@@ -11,6 +11,7 @@ import '../widgets/chat_input_fields.dart';
 //Modles
 import '../models/chat.dart';
 import '../models/chat_message.dart';
+import '../models/fcm_message.dart';
 
 //Porviders
 import '../providers/authentication_provider.dart';
@@ -163,6 +164,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   Widget _sendMessageForm() {
+    late String text;
     return Container(
       margin: const EdgeInsets.only(right: 15, left: 15, bottom: 10),
       child: Form(
@@ -170,7 +172,7 @@ class _ChatPageState extends State<ChatPage> {
         child: ChatTextFormField(
           size: _deviceHeight * 0.04,
           onSaved: (_value) {
-            _pageProvider.message = _value;
+            text = _pageProvider.message = _value;
           },
           regEx: r"^(?!\s*$).+",
           message: '',
@@ -178,6 +180,11 @@ class _ChatPageState extends State<ChatPage> {
             if (_messageFormState.currentState!.validate()) {
               _messageFormState.currentState!.save();
               _pageProvider.sendTextMessage();
+              sendNotificationToDriver(
+                  'dTicsjj6Sraw7QENhrP5-U:APA91bHTUvGRFo_kdeE0yPUjzAtJLrwQnriymHSLgW5y7t7weLGQi1hFyuEFt7fHEVGZNlWyUsiDhbviul5dLLkOtCiQuLJSMNiCNIbC5KcqmQWeegn8a3UscN3xvUjfHVOtMKfe-pRW',
+                  context,
+                  _auth.user.name,
+                  text);
               _messageFormState.currentState!.reset();
             }
           },

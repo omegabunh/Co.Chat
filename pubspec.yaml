@@ -58,6 +58,8 @@ dependencies:
   permission_handler: ^8.3.0
   scan: ^1.6.0
   audioplayers: ^0.20.1
+  firebase_messaging: ^10.0.7
+  overlay_support: ^1.2.1
 
 dev_dependencies:
   flutter_test:
