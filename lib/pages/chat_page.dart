@@ -180,11 +180,11 @@ class _ChatPageState extends State<ChatPage> {
             if (_messageFormState.currentState!.validate()) {
               _messageFormState.currentState!.save();
               _pageProvider.sendTextMessage();
-              sendNotificationToDriver(
-                  'dTicsjj6Sraw7QENhrP5-U:APA91bHTUvGRFo_kdeE0yPUjzAtJLrwQnriymHSLgW5y7t7weLGQi1hFyuEFt7fHEVGZNlWyUsiDhbviul5dLLkOtCiQuLJSMNiCNIbC5KcqmQWeegn8a3UscN3xvUjfHVOtMKfe-pRW',
-                  context,
-                  _auth.user.name,
-                  text);
+              // sendNotificationToDriver(
+              //     'token',
+              //     context,
+              //     _auth.user.name,
+              //     text);
               _messageFormState.currentState!.reset();
             }
           },

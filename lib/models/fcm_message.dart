@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 
-const String _serverKey =
-    "AAAAiDRr784:APA91bEDRmx0osKHddhtyQjGOoc-c7kG_Z6uyLPcosasriG4h_cGRZgTtkSF5dMnvZYbNatbHylxGn1cmuSQKAcE8ebHwZuAzuRYwHfcuWPS-srjLKB6C6RCataaWmMBleEfzxtK7Eyk";
+const String _serverKey = "yourServerKey";
 
 void sendNotificationToDriver(
     String token, context, String sender, String text) async {

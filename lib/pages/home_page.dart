@@ -26,15 +26,11 @@ class _HomePageState extends State<HomePage> {
     ToDoPage(),
   ];
 
-  @override
-  Widget build(BuildContext context) {
+  void fcmController() {
     messaging = FirebaseMessaging.instance;
-    messaging.getToken().then((value) {
-      print(value);
-    });
+    messaging.getToken();
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {});
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print("message recieved");
-      print(event.notification!.body);
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -43,7 +39,7 @@ class _HomePageState extends State<HomePage> {
               content: Text(event.notification!.body!),
               actions: [
                 TextButton(
-                  child: Text("Ok"),
+                  child: const Text("확인"),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -52,9 +48,17 @@ class _HomePageState extends State<HomePage> {
             );
           });
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print('Message clicked!');
-    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    fcmController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return _buildUI();
   }
 
