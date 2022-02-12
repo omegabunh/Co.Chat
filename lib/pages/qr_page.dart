@@ -36,11 +36,7 @@ class _QrPageState extends State<QrPage> {
   late AuthenticationProvider _auth;
 
   bool _visibility = true;
-
-  //qr code time
-  String now = formatDate(DateTime.now(),
-      [yyyy, '년 ', mm, '월 ', dd, '일 ', am, ' ', hh, '시 ', nn, '분 ', ss, '초'],
-      locale: const KoreanDateLocale());
+  DateTime now = DateTime.now().toUtc();
 
   int _endTime = DateTime.now().millisecondsSinceEpoch +
       const Duration(seconds: 15).inMilliseconds;
@@ -283,11 +279,7 @@ class _QrPageState extends State<QrPage> {
   void updateUI() {
     _endTime = DateTime.now().millisecondsSinceEpoch +
         const Duration(seconds: 15).inMilliseconds;
-
-    now = formatDate(DateTime.now(),
-        [yyyy, '년 ', mm, '월 ', dd, '일 ', am, ' ', hh, '시 ', nn, '분 ', ss, '초'],
-        locale: const KoreanDateLocale());
-
+    now = DateTime.now().toUtc();
     _show();
   }
 

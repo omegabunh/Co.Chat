@@ -114,7 +114,7 @@ class DatabaseService {
 
   Future<void> addWorkRecord(
     String _uid,
-    String _qrTime,
+    DateTime _qrTime,
     String _name,
   ) async {
     try {
