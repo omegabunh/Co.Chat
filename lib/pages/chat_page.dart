@@ -180,6 +180,7 @@ class _ChatPageState extends State<ChatPage> {
             if (_messageFormState.currentState!.validate()) {
               _messageFormState.currentState!.save();
               _pageProvider.sendTextMessage();
+              // fcm 송신
               // sendNotificationToDriver(
               //     'token',
               //     context,

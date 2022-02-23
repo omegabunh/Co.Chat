@@ -92,7 +92,7 @@ class _ChatsPageState extends State<ChatsPage> {
     return Expanded(
       child: (() {
         if (_chats != null) {
-          if (_chats.length != 0) {
+          if (_chats.isNotEmpty) {
             return ListView.builder(
               itemCount: _chats.length,
               itemBuilder: (BuildContext _context, int _index) {

@@ -115,7 +115,7 @@ class _QrPageState extends State<QrPage> {
                     ),
                   ),
                 ),
-                ProfileImage(),
+                imageProfile(),
                 Text(
                   name,
                   style: const TextStyle(
@@ -125,13 +125,13 @@ class _QrPageState extends State<QrPage> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                QrCodeImage(),
+                qrCodeImage(),
                 const SizedBox(height: 40),
                 CountdownTimer(
                   endTime: _endTime,
                   widgetBuilder: (_, CurrentRemainingTime? time) {
                     if (time == null) {
-                      return QrRefreshButton();
+                      return qrRefreshButton();
                     }
                     return SizedBox(
                       child: Text(
@@ -194,7 +194,7 @@ class _QrPageState extends State<QrPage> {
                   ],
                 ),
               ),
-              ProfileImage(),
+              imageProfile(),
               Text(
                 name,
                 style: const TextStyle(
@@ -204,13 +204,13 @@ class _QrPageState extends State<QrPage> {
                 ),
               ),
               const SizedBox(height: 40),
-              QrCodeImage(),
+              qrCodeImage(),
               const SizedBox(height: 40),
               CountdownTimer(
                 endTime: _endTime,
                 widgetBuilder: (_, CurrentRemainingTime? time) {
                   if (time == null) {
-                    return QrRefreshButton();
+                    return qrRefreshButton();
                   }
                   return SizedBox(
                     child: Text(
@@ -233,8 +233,7 @@ class _QrPageState extends State<QrPage> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget ProfileImage() {
+  Widget imageProfile() {
     return Container(
       width: 100,
       height: 100,
@@ -251,7 +250,7 @@ class _QrPageState extends State<QrPage> {
     );
   }
 
-  Widget QrCodeImage() {
+  Widget qrCodeImage() {
     return Visibility(
       visible: _visibility,
       child: QrImage(
@@ -264,7 +263,7 @@ class _QrPageState extends State<QrPage> {
     );
   }
 
-  Widget QrRefreshButton() {
+  Widget qrRefreshButton() {
     return FloatingActionButton(
       heroTag: "sendImage",
       backgroundColor: const Color.fromRGBO(64, 200, 104, 1.0),
