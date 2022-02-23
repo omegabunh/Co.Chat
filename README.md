@@ -6,6 +6,7 @@
 ## 개요
 - [Flutter](https://flutter.dev/), [Firebase](https://firebase.google.com/)를 이용한 채팅, QR Code 출퇴근 관리 App.
 - 이용자 간의 1대1, 그룹채팅 기능, QR Code 생성 후 QR Scan을 통해 Database에 시간을 기록하여 출퇴근 시간 기록.
+- 할일관리, 채팅 선택해 할일관리 추가 기능.
 ## Platform
 
 ![IOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white) ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
@@ -34,7 +35,7 @@
 
 |ToDo List|add ToDo|add ToDo on chat|
 |:---:|:---:|:---:|
-|<img src="https://user-images.githubusercontent.com/55680319/155275562-f186b47e-0dac-4074-9805-faf54f45f8ac.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/155275570-3d368819-1300-4c3c-bb2a-305ce953cca4.png" width="270" height="570">|<img src="https://user-images.githubusercontent.com/55680319/155275583-cc5040b8-0436-40da-a95c-e35564d88828.png" width="270" height="570">|
+|<img src="https://user-images.githubusercontent.com/55680319/155275562-f186b47e-0dac-4074-9805-faf54f45f8ac.png">|<img src="https://user-images.githubusercontent.com/55680319/155275570-3d368819-1300-4c3c-bb2a-305ce953cca4.png">|<img src="https://user-images.githubusercontent.com/55680319/155275583-cc5040b8-0436-40da-a95c-e35564d88828.png">|
 
 ## Adaptive UI (iOS & Android)
 |![IOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)|![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)|
