@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import './models/theme.dart';
 
 //Packages
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:provider/provider.dart';
 
 //Services
@@ -21,7 +20,7 @@ import './pages/register_page.dart';
 import './pages/home_page.dart';
 
 Future<void> _messageHandler(RemoteMessage message) async {
-  print('background message ${message.notification!.body}');
+  //print('background message ${message.notification!.body}');
 }
 
 void main() async {
@@ -33,7 +32,7 @@ void main() async {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
-          MainApp(),
+          const MainApp(),
         );
       },
     ),
@@ -41,6 +40,8 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
+  const MainApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -61,9 +62,9 @@ class MainApp extends StatelessWidget {
             navigatorKey: NavigationService.navigatorKey,
             initialRoute: '/login',
             routes: {
-              '/login': (BuildContext _context) => LoginPage(),
-              '/register': (BuildContext _context) => RegisterPage(),
-              '/home': (BuildContext _context) => HomePage(),
+              '/login': (BuildContext _context) => const LoginPage(),
+              '/register': (BuildContext _context) => const RegisterPage(),
+              '/home': (BuildContext _context) => const HomePage(),
             },
             debugShowCheckedModeBanner: false,
           ),

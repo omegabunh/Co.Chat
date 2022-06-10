@@ -1,7 +1,7 @@
 //Packages
 import 'dart:io';
 
-import 'package:Co.Chat/pages/users_page.dart';
+import '../pages/users_page.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -23,6 +23,8 @@ import '../widgets/top_bar.dart';
 import '../providers/authentication_provider.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ProfilePageState();
@@ -87,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.pop(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => UsersPage(),
+                      builder: (context) => const UsersPage(),
                     ),
                   );
                 },

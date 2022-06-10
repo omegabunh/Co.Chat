@@ -1,8 +1,8 @@
 //Packages
 import 'dart:io';
 
-import 'package:Co.Chat/pages/profile_page.dart';
-import 'package:Co.Chat/providers/theme_provider.dart';
+import '../pages/profile_page.dart';
+import '../providers/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +21,8 @@ import '../widgets/rounded_button.dart';
 import '../models/chat_user.dart';
 
 class UsersPage extends StatefulWidget {
+  const UsersPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _UsersPageState();
@@ -98,7 +100,7 @@ class _UsersPageState extends State<UsersPage> {
                                           _context,
                                           MaterialPageRoute(
                                             builder: (_context) =>
-                                                ProfilePage(),
+                                                const ProfilePage(),
                                           ),
                                         );
                                       },
@@ -200,7 +202,7 @@ class _UsersPageState extends State<UsersPage> {
                           Navigator.push(
                             _context,
                             MaterialPageRoute(
-                              builder: (_context) => ProfilePage(),
+                              builder: (_context) => const ProfilePage(),
                             ),
                           );
                         } else if (result == 2) {}

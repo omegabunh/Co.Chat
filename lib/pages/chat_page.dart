@@ -1,4 +1,6 @@
 //Packages
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +13,7 @@ import '../widgets/chat_input_fields.dart';
 //Modles
 import '../models/chat.dart';
 import '../models/chat_message.dart';
-import '../models/fcm_message.dart';
+//import '../models/fcm_message.dart';
 
 //Porviders
 import '../providers/authentication_provider.dart';
@@ -20,6 +22,7 @@ import '../providers/chat_page_provider.dart';
 class ChatPage extends StatefulWidget {
   final Chat chat;
 
+  // ignore: use_key_in_widget_constructors
   const ChatPage({required this.chat});
 
   @override
@@ -119,7 +122,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget _messagesListView() {
     if (_pageProvider.messages != null) {
-      if (_pageProvider.messages!.length != 0) {
+      if (_pageProvider.messages!.isNotEmpty) {
         return CupertinoScrollbar(
           thickness: 6.0,
           thicknessWhileDragging: 10.0,

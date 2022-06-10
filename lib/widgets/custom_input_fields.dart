@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -9,13 +11,14 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType type;
 
   CustomTextFormField({
+    Key? key,
     required this.onSaved,
     required this.regEx,
     required this.hintText,
     required this.obscureText,
     required this.message,
     required this.type,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +53,13 @@ class CustomTextField extends StatelessWidget {
   IconData? icon;
 
   CustomTextField(
-      {required this.onEditingComplete,
+      {Key? key,
+      required this.onEditingComplete,
       required this.hintText,
       required this.obscureText,
       required this.controller,
-      this.icon});
+      this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -23,6 +23,8 @@ import '../models/chat_user.dart';
 import '../models/chat_message.dart';
 
 class ChatsPage extends StatefulWidget {
+  const ChatsPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ChatsPageState();

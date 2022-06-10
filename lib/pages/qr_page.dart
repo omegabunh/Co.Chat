@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:flutter_countdown_timer/index.dart';
-import 'package:timer_builder/timer_builder.dart';
-import 'package:date_format/date_format.dart';
 
 //Providers
 import '../providers/authentication_provider.dart';
@@ -20,6 +18,8 @@ import '../widgets/top_bar.dart';
 import '../pages/qrscan_page.dart';
 
 class QrPage extends StatefulWidget {
+  const QrPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _QrPageState();

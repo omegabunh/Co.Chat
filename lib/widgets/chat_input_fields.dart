@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class ChatTextFormField extends StatelessWidget {
@@ -8,7 +10,7 @@ class ChatTextFormField extends StatelessWidget {
   final Function() imageSend;
   final double size;
 
-  ChatTextFormField({
+  const ChatTextFormField({
     required this.onSaved,
     required this.regEx,
     required this.message,

@@ -1,4 +1,6 @@
 //Packages
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -21,6 +23,7 @@ class CustomListViewTile extends StatelessWidget {
   final Function onTap;
 
   CustomListViewTile({
+    Key? key,
     required this.height,
     required this.title,
     required this.subtitle,
@@ -28,7 +31,7 @@ class CustomListViewTile extends StatelessWidget {
     required this.isActive,
     required this.isSelected,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +77,7 @@ class CustomListViewTileWithActivity extends StatelessWidget {
   final Function onTap;
 
   CustomListViewTileWithActivity({
+    Key? key,
     required this.height,
     required this.title,
     required this.subtitle,
@@ -81,7 +85,7 @@ class CustomListViewTileWithActivity extends StatelessWidget {
     required this.isActive,
     required this.isActivity,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -133,12 +137,13 @@ class CustomChatListViewTile extends StatelessWidget {
   final ChatUser sender;
 
   CustomChatListViewTile({
+    Key? key,
     required this.width,
     required this.deviceHeight,
     required this.isOwnMessage,
     required this.message,
     required this.sender,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -211,10 +216,12 @@ class CustomProfileTile extends StatelessWidget {
   final bool isActive;
 
   CustomProfileTile(
-      {required this.height,
+      {Key? key,
+      required this.height,
       required this.title,
       required this.imagePath,
-      required this.isActive});
+      required this.isActive})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

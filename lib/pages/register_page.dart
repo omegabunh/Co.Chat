@@ -21,6 +21,8 @@ import '../widgets/rounded_image.dart';
 import '../providers/authentication_provider.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _RegisterPageState();

@@ -1,9 +1,9 @@
-import 'dart:io';
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, unused_field, prefer_final_fields
+
 import 'dart:async';
 
 //Packages
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:scan/scan.dart';
 import 'package:get_it/get_it.dart';

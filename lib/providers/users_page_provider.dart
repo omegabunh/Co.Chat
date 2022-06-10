@@ -1,4 +1,6 @@
 //Packages
+// ignore_for_file: avoid_print, unnecessary_overrides
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
@@ -18,7 +20,7 @@ import '../models/chat.dart';
 import '../pages/chat_page.dart';
 
 class UsersPageProvider extends ChangeNotifier {
-  AuthenticationProvider _auth;
+  final AuthenticationProvider _auth;
 
   late DatabaseService _database;
   late NavigationService _navigation;

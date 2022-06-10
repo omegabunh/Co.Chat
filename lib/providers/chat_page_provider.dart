@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, prefer_final_fields, avoid_print
+
 import 'dart:async';
 
 //Packages
@@ -41,7 +43,7 @@ class ChatPageProvider extends ChangeNotifier {
     return message;
   }
 
-  void set message(String _value) {
+  set message(String _value) {
     _message = _value;
   }
 

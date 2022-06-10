@@ -15,6 +15,8 @@ import '../providers/authentication_provider.dart';
 import '../services/navigation_service.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _LoginPageState();

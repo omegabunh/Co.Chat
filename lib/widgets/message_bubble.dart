@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ class TextMessageBubble extends StatelessWidget {
   final double height;
   final double width;
 
-  TextMessageBubble(
+  const TextMessageBubble(
       {required this.isOwnMessage,
       required this.message,
       required this.height,
@@ -85,7 +87,7 @@ class ImageMessageBubble extends StatelessWidget {
   final double height;
   final double width;
 
-  ImageMessageBubble(
+  const ImageMessageBubble(
       {required this.isOwnMessage,
       required this.message,
       required this.height,

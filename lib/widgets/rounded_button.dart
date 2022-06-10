@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -6,7 +8,7 @@ class RoundedButton extends StatelessWidget {
   final double width;
   final Function onPressed;
 
-  RoundedButton({
+  const RoundedButton({
     required this.name,
     required this.height,
     required this.width,

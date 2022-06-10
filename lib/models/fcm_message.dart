@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 
 const String _serverKey = "yourServerKey";
 
 void sendNotificationToDriver(
     String token, context, String sender, String text) async {
+  // ignore: unnecessary_null_comparison
   if (token == null) {
-    print('Unable to send FCM message, no token exists.');
+    //print('Unable to send FCM message, no token exists.');
     return;
   }
 
@@ -21,9 +21,9 @@ void sendNotificationToDriver(
       },
       body: constructFCMPayload(token, sender, text),
     );
-    print('FCM request for device sent!');
+    //print('FCM request for device sent!');
   } catch (e) {
-    print(e);
+    //print(e);
   }
 }
 
@@ -40,6 +40,6 @@ String constructFCMPayload(String token, String sender, String text) {
     'to': token,
   });
 
-  print(res.toString());
+  //print(res.toString());
   return res;
 }
